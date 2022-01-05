@@ -1,0 +1,84 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = directorate.name -%}
+{%- set current_url = '/' + directorate.slug %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  {{directorate.name}}
+  {% if directorate.alias %}
+    <span class="govuk-visually-hidden">Also known as: </span><span class="govuk-caption-xl">{{directorate.alias}}</span>
+  {% endif %}
+</h1>
+
+<div class="app-inset-text govuk-!-margin-top-9">
+  <h2 class="govuk-heading-l">
+    {{directorate.name}} overview
+  </h2>
+  {{ govukSummaryList({
+    classes: 'app-summary-list',
+    rows: [
+      {
+        key: {
+          html: '<strong>Total <span class="govuk-visually-hidden">number of services which are</span> live:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.live
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--red">Very high risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.risk_very_high
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--orange">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.risk_high
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--yellow">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.risk_medium
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--green">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.compliant
+        }
+      }
+    ]
+  }) }}
+
+  {{ statsSection({
+    service_name: directorate.name,
+    heading: 'True compliance',
+    heading_hidden: 'of ' + directorate.name,
+    heading_level: 3,
+    stats_type: 'true_compliance',
+    stats: directorate.stats
+  }) }}
+
+  {{ statsSection({
+    service_name: directorate.name,
+    heading: 'Adjusted compliance',
+    heading_hidden: 'of ' + directorate.name,
+    heading_level: 3,
+    heading_class: 'govuk-heading-m',
+    stats_type: 'adjusted_compliance',
+    stats: directorate.stats
+  }) }}
+</div>
+{%- endblock -%}

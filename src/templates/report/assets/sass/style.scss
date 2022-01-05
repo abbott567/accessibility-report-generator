@@ -1,0 +1,19 @@
+// Font overrides
+$govuk-font-family: Arial, Helvetica, sans-serif;
+html { font-family: $govuk-font-family }
+
+// GOVUK Frontend
+@import 'node_modules/govuk-frontend/govuk/all';
+
+// App components
+@import '../../components/all';
+
+.app-inset-text {
+  border-left: 5px solid $govuk-border-colour;
+  padding-left: 2rem;
+}
+
+footer {
+  border-top: 1px solid $govuk-border-colour;
+  padding-top: 1rem;
+}

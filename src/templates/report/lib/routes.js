@@ -1,0 +1,21 @@
+const express = require('express')
+const router = express.Router()
+
+router.use(require('../pages/accessibility-statement/routes'))
+router.use(require('../pages/next-steps-for-this-report/routes'))
+router.use(require('../pages/sitemap/routes'))
+router.use(require('../pages/filters/compliant-services/routes'))
+router.use(require('../pages/filters/very-high-risk-services/routes'))
+router.use(require('../pages/filters/high-risk-services/routes'))
+router.use(require('../pages/filters/medium-risk-services/routes'))
+router.use(require('../pages/filters/unknown-risk-services/routes'))
+router.use(require('../pages/filters/sunsetting-services/routes'))
+router.use(require('../pages/filters/critical-services/routes'))
+router.use(require('../pages/filters/citizen-facing-services/routes'))
+router.use(require('../pages/filters/staff-facing-services/routes'))
+router.use(require('../pages/filters/no-plans-for-compliance/routes'))
+router.use(require('../pages/overview/routes'))
+router.use(require('../pages/directorate/routes'))
+router.use(require('../pages/pdu/routes'))
+
+module.exports = router

@@ -1,0 +1,10 @@
+{%- set compliantRisk = data.thisMonth.pdu.getServices({ risk: 'compliant' }) -%}
+{%- if (compliantRisk.length > 0) -%}
+  <ul>
+    {%- for service in compliantRisk -%}
+      <li>{{service.name}}</li>
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <p>You currently have no compliant services.</p>
+{%- endif -%}

@@ -1,0 +1,32 @@
+<style>html{font-family:arial, sans-serif;}</style>
+
+<h1>Accessibility Update</h1>
+{% include './partials/intro.njk' %}
+
+<h2>Compliance rates</h2>
+{% include './partials/compliance-true.njk' %}
+{% include './partials/compliance-adjusted.njk' %}
+
+<h2>Risks</h2>
+{% include './partials/risks-very-high.njk' %}
+{% include './partials/risks-high.njk' %}
+{% include './partials/risks-medium.njk' %}
+
+<h2>Compliant services</h2>
+{% include './partials/services-compliant.njk' %}
+
+<h2>Very high risk services</h2>
+{% include './partials/services-very-high-risk.njk' %}
+
+<h2>High risk services</h2>
+{% include './partials/services-high-risk.njk' %}
+
+<h2>Medium risk services</h2>
+{% include './partials/services-medium-risk.njk' %}
+
+<h2>Services where no accessibility work is scheduled</h2>
+<p>
+  These are the sunsetting services which have been descoped in the adjusted 
+  compliance stats.
+</p>
+{% include './partials/services-sunsetting.njk' %}

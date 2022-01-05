@@ -1,0 +1,42 @@
+.app-progress-bar {
+  .app-progress-bar__background {
+    display: inline-block;
+    height: .9rem;
+    width: 100%;
+    max-width: 66%;
+    border-color: $govuk-border-colour;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+    .app-progress-bar__foreground {
+      height: .9rem;
+      border-color: govuk-colour("white");
+      border-width: 2px;
+      border-style: solid;
+      box-sizing: border-box;
+    }
+    
+    .app-progress-bar__foreground--green {
+      background-color:  govuk-colour("green");
+    }
+    .app-progress-bar__foreground--amber {
+      background-color: #f3661e;
+    }
+    .app-progress-bar__foreground--red {
+      background-color: govuk-colour("red");
+    }
+    .app-progress-bar__foreground--grey {
+      background-color: $govuk-border-colour;
+    }
+  }
+
+  .app-progress-bar__rate {
+    display: inline-block;
+    font-weight: bold;
+    margin: 0;
+    margin-left: .3rem;
+  }
+}
+

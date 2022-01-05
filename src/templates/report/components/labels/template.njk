@@ -1,0 +1,69 @@
+{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
+{%- if service.risk === 'very-high' -%}
+  {%- set risk_tag_text = service.risk + ' risk' -%}
+  {%- set risk_tag_class = 'govuk-tag--red' -%}
+{%- elif service.risk === 'high' -%}
+  {%- set risk_tag_text = service.risk + ' risk' -%}
+  {%- set risk_tag_class = 'govuk-tag--orange' -%}
+{%- elif service.risk === 'medium' -%}
+  {%- set risk_tag_text = service.risk + ' risk' -%}
+  {%- set risk_tag_class = 'govuk-tag--yellow' -%}
+{%- elif service.risk === 'compliant' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'govuk-tag--green' -%}
+{%- else -%}
+  {%- set risk_tag_text = service.risk + ' risk' -%}
+  {%- set risk_tag_class = 'govuk-tag--grey' -%}
+{%- endif -%}
+
+{%- if service.status === 'live' -%}
+  {%- set status_tag = 'govuk-tag--turquoise' -%}
+{%- else -%}
+  {%- set status_tag = 'govuk-tag--grey' -%}
+{%- endif -%}
+
+<ul class="app-label-list">
+  <li>
+    {{- govukTag({
+      text: service.status,
+      classes: status_tag + (' ' + params.add_classes if params.add_classes)
+    }) -}}
+  </li>
+  {%- if service.risk !== 'not-live' -%}
+    <li>
+      {{- govukTag({
+        text: risk_tag_text,
+        classes: risk_tag_class + (' ' + params.add_classes if params.add_classes)
+      }) -}}
+    </li>
+  {%- endif -%}
+  <li>
+    {%- set txthtml -%}
+      {{- service.type -}} <span class="govuk-visually-hidden">facing</span>
+    {%- endset -%}
+    {{- govukTag({
+      text: txthtml|safe,
+      classes: (params.add_classes if params.add_classes)
+    }) -}}
+  </li>
+  {%- if service.critical === 'true' or service.sunsetting === 'true' -%}
+    {%- if service.critical === 'true' -%}
+      <li>
+        {{ govukTag({
+          text: 'Critical',
+          classes: 'govuk-tag--red' + (' ' + params.add_classes if params.add_classes)
+        }) }}
+      </li>
+    {%- endif -%}
+    
+    {%- if service.sunsetting === 'true' -%}
+      <li>
+        {{ govukTag({
+          text: 'Sunsetting',
+          classes: 'govuk-tag--pink' + (' ' + params.add_classes if params.add_classes)
+        }) }}
+      </li>
+    {%- endif -%}
+  {%- endif -%}
+</ul>

@@ -1,0 +1,73 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = 'Sitemap' -%}
+{%- set current_url = '/sitemap' %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Sitemap
+</h1>
+
+<div class="app-inset-text govuk-!-margin-top-9">
+  <h2 class="govuk-heading-m">
+    Main navigation
+  </h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {%- for parent in nav.main -%}
+      <li>
+        <a href="{{parent.link}}">
+          {{parent.name}}
+        </a>
+        {%- if parent.children.length > 0 -%}
+          <ul class="govuk-list govuk-list--bullet">
+            {%- for child in parent.children -%}
+              <li><a href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <h2 class="govuk-heading-m">
+    Filters
+  </h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {%- for parent in nav.filters -%}
+      <li>
+        <a href="{{parent.link}}">
+          {{parent.name}}
+        </a>
+        {%- if parent.children.length > 0 -%}
+          <ul class="govuk-list govuk-list--bullet">
+            {%- for child in parent.children -%}
+              <li><a href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <h2 class="govuk-heading-m">
+    Support links
+  </h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {%- for parent in nav.support_links -%}
+      <li>
+        <a href="{{parent.link}}">
+          {{parent.name}}
+        </a>
+        {%- if parent.children.length > 0 -%}
+          <ul class="govuk-list govuk-list--bullet">
+            {%- for child in parent.children -%}
+              <li><a href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+{%- endblock -%}

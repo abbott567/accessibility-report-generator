@@ -1,0 +1,14 @@
+{%- set veryHighRiskServices = data.thisMonth.pdu.getServices({ risk: 'very-high' }) -%}
+{%- if (veryHighRiskServices.length > 0) -%}
+  <ul>
+    {%- for service in veryHighRiskServices -%}
+      {%- if service.plans === 'true'-%}
+        <li>{{service.name}}</li>
+      {%- else -%}
+        <li>{{service.name}} (no accessibility work scheduled)</li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <p>You currently have no very high risk services.</p>
+{%- endif -%}

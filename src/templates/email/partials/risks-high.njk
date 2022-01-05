@@ -1,0 +1,14 @@
+<p>
+  {{data.thisMonth.pdu.stats.services.all.risk_high}} services are considered high risk.
+  {%- if (data.previousMonth) -%}
+    {%- if (data.thisMonth.pdu.stats.services.all.risk_high === data.previousMonth.pdu.stats.services.all.risk_high) -%}
+      This is the same as last month.
+    {%- endif -%}
+    {%- if (data.thisMonth.pdu.stats.services.all.risk_high > data.previousMonth.pdu.stats.services.all.risk_high) -%}
+      This is an increase from {{data.previousMonth.pdu.stats.services.all.risk_high}} from last month.
+    {%- endif -%}
+    {%- if (data.thisMonth.pdu.stats.services.all.risk_high < data.previousMonth.pdu.stats.services.all.risk_high) -%}
+      This is a decrease from {{data.previousMonth.pdu.stats.services.all.risk_high}} from last month.
+    {%- endif -%}
+  {%- endif -%}
+</p>

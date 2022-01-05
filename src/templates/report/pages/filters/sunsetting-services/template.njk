@@ -1,0 +1,52 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = tag|prettify|capitalize + ' services' -%}
+{%- set current_url = '/filters/sunsetting-services' %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  {{tag|prettify|capitalize}} services
+</h1>
+
+<p class="govuk-body">
+  {%- if tag === 'critical' -%}
+    {%- set numberOfServices = Service.getCritical().length -%}
+  {%- elif tag === 'sunsetting' -%}
+    {%- set numberOfServices = Service.getSunsetting().length -%}
+  {%- endif -%}
+  There are {{numberOfServices}} {{tag|prettify}} services in total.
+</p>
+
+{%- for directorate in Directorate.all -%}
+  <div class="app-inset-text govuk-!-margin-top-6">
+    <h2 class="govuk-heading-m">{{directorate.name}}</h2>
+    {%- for pdu in directorate.getPDUs() -%}
+      {%- if tag === 'critical' -%}
+        {%- set services = pdu.getServices({ critical: 'true' }) -%}
+      {%- elif tag === 'sunsetting' -%}
+          {%- set services = pdu.getServices({ sunsetting: 'true' }) -%}
+      {%- endif -%}
+      <h3 class="govuk-heading-s">{{pdu.name}}</h3>
+      {%- if services.length === 0 -%}
+        <p class="govuk-body">
+          No {{tag|prettify}} services.
+        </p>
+      {%- else -%}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for service in services %}
+            <li class="govuk-!-margin-bottom-5">
+            {{service.name}}<br />
+            <span class="govuk-visually-hidden">
+              Labels:
+            </span>
+            {{- labels(service, {add_classes: 'app-tag'}) -}}
+          </li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+
+{%- endblock -%}

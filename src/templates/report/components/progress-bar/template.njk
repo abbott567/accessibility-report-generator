@@ -1,0 +1,45 @@
+{%- set bar_colour  -%} 
+  {%- if params.stat_summary === 'No services to make compliant' -%}
+    grey
+  {%- elif params.compliance_rate >= 90 -%}
+    green
+  {%- elif params.compliance_rate > 50 -%}
+    amber
+  {%- else -%}
+    red
+  {%- endif -%}
+{%- endset -%}
+
+{%- set bar_width  -%}
+  {%- if params.stat_summary === 'No services to make compliant' -%}
+    100%
+  {%- else  -%}
+    {{params.compliance_rate}}%
+  {%- endif  -%}
+{%- endset  -%}
+
+{%- set bar_rate -%}
+  {%- if params.stat_summary === 'No services to make compliant' -%}
+    N/A <span class="govuk-visually-hidden">(not applicable)</span>
+  {%- else  -%}
+    {{params.compliance_rate}}% <span class="govuk-visually-hidden">compliant</span>
+  {%- endif  -%}
+{%- endset  -%}
+
+<div class="app-progress-bar govuk-!-margin-bottom-3">
+  <h{{params.heading_level}} class="govuk-heading-s govuk-!-margin-bottom-1">
+    {{-params.heading-}}
+    {%- if params.heading_hidden -%}
+      <span class="govuk-visually-hidden"> {{params.heading_hidden}}</span>
+    {%- endif -%}
+  </h{{params.heading_level}}>
+  <div class="app-progress-bar__background">
+    <div class="app-progress-bar__foreground app-progress-bar__foreground--{{-bar_colour-}}" style="width: {{-bar_width-}}"></div>
+  </div>
+  <p class="app-progress-bar__rate">{{bar_rate|safe}}</p>
+  {%- if params.stat_summary -%}
+  <p class="govuk-!-margin-top-1">
+    {{params.stat_summary}}
+  </p>
+  {%- endif -%}
+</div>

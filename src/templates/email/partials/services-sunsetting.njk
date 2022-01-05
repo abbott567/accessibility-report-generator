@@ -1,0 +1,10 @@
+{%- set noPlans = data.thisMonth.pdu.getServices({ plans: 'false' }) -%}
+{%- if (noPlans.length > 0) -%}
+  <ul>
+    {%- for service in noPlans -%}
+      <li>{{service.name}}</li>
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <p>You currently have no services where the risk has been accepted.</p>
+{%- endif -%}

@@ -1,0 +1,99 @@
+<h2 class="govuk-heading-l">
+  Services which are live <span class="govuk-visually-hidden">in {{pdu.name}}</span>
+</h2>
+<div class="app-inset-text">
+  {%- set liveServices = pdu.getServices({ status: 'live' }) -%}
+  {%- if liveServices.length === 0 -%}
+    <p>
+      No live services.
+    </p>
+  {%- else -%}
+    {%- for service in liveServices -%}
+      <div class="govuk-!-margin-bottom-9">
+        <h3 class="govuk-heading-m">
+          {{service.name}}
+          {%- if service.alias.length > 0 -%}
+            <span class="govuk-visually-hidden"> also known as </span>
+            <span class="govuk-caption-m">{{service.alias}}</span>
+          {%- endif -%}
+        </h3>
+
+        <h4 class="govuk-visually-hidden">
+          Labels for {{service.name}}
+        </h4>
+        {{- labels(service) -}}
+
+        <h4 class="govuk-visually-hidden">
+          Notes for {{service.name}}
+        </h4>
+        <p>
+          {{- service.notes -}}
+        </p>
+
+        {%- if service.plans === 'true' -%}
+          {{ progressBar({
+            heading: 'Progress',
+            heading_level: 4,
+            compliance_rate: service.stats.progress,
+            stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
+          }) }}
+        {%- else -%}
+          {{ govukWarningText({
+            text: "This service has no plans for compliance.",
+            iconFallbackText: "Important"
+          }) }}
+        {%- endif -%}
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              WCAG 2.1 <br />
+              manual checks
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{- service.evidence.wcag.status|prettify|capitalize -}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Screenreader testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{- service.evidence.screen_reader.status|prettify|capitalize -}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Speech recognition testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{- service.evidence.voice_controller.status|prettify|capitalize -}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Magnifier testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{- service.evidence.screen_magnifier.status|prettify|capitalize -}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Accessibility statement
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{- service.evidence.statement.status|prettify|capitalize -}}
+              {%- if service.evidence.statement.link.length > 0 -%}
+              <br />
+              <a class="govuk-link" href="{{service.evidence.statement.link}}">
+                View accessibility statement <span class="govuk-visually-hidden"> for {{- service.name -}}</span>
+              </a>
+            {%- endif -%}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+</div>

@@ -1,0 +1,88 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = 'Accessibility statement' -%}
+{%- set current_url = '/accessibility-statement' %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-l">
+  Accessibility statement for {{org.name}} accessibility statistics
+</h1>
+
+<div class="app-inset-text govuk-!-margin-top-9">
+  <p class="govuk-body">
+  This accessibility statement applies to the HTML statistical report for accessibility 
+  compliance accross {{org.name}}.
+  </p>
+
+  <p class="govuk-body">
+    This HTML report is run by {{org.name}}. We want as many people as possible 
+    to be able to read this report. For example, that means you should be able to:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>change colours, contrast levels and fonts</li>
+    <li>zoom in up to 300% without the text spilling off the screen</li>
+    <li>navigate most of the report using just a keyboard</li>
+    <li>navigate most of the report using speech recognition software</li>
+    <li>listen to most of the report using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+    <li>We’ve also made the report text as simple as possible to understand.</li>
+  </ul>
+
+  <p class="govuk-body">
+    <a class="govuk-link" href="https://mcmw.abilitynet.org.uk/">AbilityNet</a> 
+    has advice on making your device easier to use if you have a disability.
+  </p>
+
+  <h2 class="govuk-heading-m">
+    Reporting accessibility problems with this HTML report
+  </h2>
+  <p class="govuk-body">
+    We’re always looking to improve the accessibility of this HTML report. If you find 
+    any problems or think we’re not meeting accessibility requirements, contact: 
+    <a class="govuk-link" href="mailto:{{config.contact_email}}">{{config.contact_email}}</a>.
+  </p>
+
+  <h2 class="govuk-heading-m">
+    Enforcement procedure
+  </h2>
+  <p class="govuk-body">
+    The Equality and Human Rights Commission (EHRC) is responsible for enforcing 
+    the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility 
+    Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with 
+    how we respond to your complaint, <a class="govuk-link" href="https://www.equalityadvisoryservice.com/">
+    contact the Equality Advisory and Support Service (EASS)</a>.
+  </p>
+
+  <h2 class="govuk-heading-m">
+    Technical information about this HTML report's accessibility
+  </h2>
+  <p class="govuk-body">
+    {{config.org_name}} is committed to making its websites accessible, in 
+    accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+  </p>
+
+  <h3 class="govuk-heading-s">
+    Compliance status
+  </h3>
+  <p class="govuk-body">
+    This HTML report is fully compliant with the <a class="govuk-link" href="https://www.w3.org/TR/WCAG21/">
+    Web Content Accessibility Guidelines version 2.1</a> AA standard.
+  </p>
+
+  <h3 class="govuk-heading-s">
+    Preparation of this accessibility statement
+  </h3>
+  <p class="govuk-body">
+    This statement was prepared on {{date}}. It was 
+    last reviewed on {{date}}.
+  </p>  
+  <p class="govuk-body">
+    This HTML report was last tested on 23 March 2021. The test was carried out by 
+    {{org.name}}.
+  </p>
+  <p class="govuk-body">
+    Each page template was tested:
+  </p>
+</div>
+
+{%- endblock -%}

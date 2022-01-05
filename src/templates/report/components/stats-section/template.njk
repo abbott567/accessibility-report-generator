@@ -1,0 +1,41 @@
+{%- from '../progress-bar/macro.njk' import progressBar -%}
+
+{%- set templateData = params | generateStatsSectionData -%}
+
+<h{{params.heading_level}} class="govuk-heading-m">
+  {{-params.heading-}}
+  {%- if params.heading_hidden -%}
+    <span class="govuk-visually-hidden"> {{params.heading_hidden}}</span>
+  {%- endif -%}
+</h{{params.heading_level}}>
+{%- if params.stats_type === 'adjusted' -%}
+  <p class="govuk-body">
+    {{params.service_name}} have plans to make {{stats.total_live - stats.total_descoped}} of {{stats.total_live}} services compliant.
+  </p>
+{%- endif -%}
+
+<div class="govuk-!-margin-bottom-9">
+  {{progressBar({
+    heading: 'Total compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: templateData.all.stats.rate,
+    stat_summary: templateData.all.text
+  })}}
+
+  {{progressBar({
+    heading: 'Citizen facing compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: templateData.citizen.stats.rate,
+    stat_summary: templateData.citizen.text
+  })}}
+
+  {{progressBar({
+    heading: 'Staff facing compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: templateData.staff.stats.rate,
+    stat_summary: templateData.staff.text
+  })}}
+</div>
