@@ -1,11 +1,17 @@
 require('colors')
-const orgOverrides = require('../overrides/org')
+const fs = require('fs-jetpack')
 
 function generateOverviewWorksheet (workbook, Org, tabName) {
-  const orgOriginal = Org.all[0]
-  const org = orgOverrides(orgOriginal)
+  let org = Org.all[0]
+  const overrideExists = fs.exists('./src/templates/excel/export/overrides/org.js')
+  if (overrideExists) {
+    console.log('Excel:'.yellow, 'Overriding org data'.yellow)
+    const orgOverrides = require('../overrides/org')
+    org = orgOverrides(org)
+  }
   const wsOverview = workbook.addWorksheet(tabName)
   wsOverview.columns = [
+    { header: 'Org', key: 'org_name', width: 20 },
     { header: '(%) All - True compliance', key: 'rates_true_total', width: 20 },
     { header: '(%) Citizen - True compliance', key: 'rates_true_citizen', width: 20 },
     { header: '(%) Staff - True compliance', key: 'rates_true_staff', width: 20 },
@@ -53,6 +59,7 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 }
   ]
   wsOverview.addRow({
+    org_name: org.name,
     rates_true_total: org.stats.rates.true_compliance.total,
     rates_true_citizen: org.stats.rates.true_compliance.citizen,
     rates_true_staff: org.stats.rates.true_compliance.staff,

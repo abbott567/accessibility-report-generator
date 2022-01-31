@@ -1,5 +1,5 @@
 function overrideOrg (org) {
-  // org.name = 'Ministry of Reasonably Sized Cats'
+  org.name = 'Ministry of Reasonably Sized Cats'
   return org
 }
 

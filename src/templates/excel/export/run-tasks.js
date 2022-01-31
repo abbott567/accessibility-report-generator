@@ -1,6 +1,6 @@
 const Excel = require('exceljs')
 const date = require('../../../utils/today-date')
-const overrideTabNames = require('./overrides/tab-names')
+const fs = require('fs-jetpack')
 
 const { Org, Directorate, PDU, Service } = require('../../../model/build-data-model')()
 const cleanTodayFolder = require('./tasks/export:excel--clean-today')
@@ -18,7 +18,11 @@ const tabNames = {
 
 async function buildExcel () {
   const workbook = new Excel.Workbook()
-  overrideTabNames(tabNames)
+  const overrideExists = fs.exists('./src/templates/excel/export/overrides/tab-names.js')
+  if (overrideExists) {
+    const overrideTabNames = require('./overrides/tab-names')
+    overrideTabNames(tabNames)
+  }
   generateOverviewWorksheet(workbook, Org, tabNames.org)
   generateDirectoratesWorksheet(workbook, Directorate, tabNames.directorates)
   generatePDUsWorksheet(workbook, PDU, tabNames.pdus)

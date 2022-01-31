@@ -1,9 +1,14 @@
 require('colors')
-const overrideServices = require('../overrides/services')
+const fs = require('fs-jetpack')
 
 function generateServicesWorksheet (workbook, Service, tabName) {
-  const servicesOriginal = Service.all
-  const services = overrideServices(servicesOriginal)
+  let services = Service.all
+  const overrideExists = fs.exists('./src/templates/excel/export/overrides/services.js')
+  if (overrideExists) {
+    console.log('Excel:'.yellow, 'Overriding services data'.yellow)
+    const overrideServices = require('../overrides/services')
+    services = overrideServices(services)
+  }
   const wsOverview = workbook.addWorksheet(tabName)
   wsOverview.columns = [
     { header: 'Name', key: 'service_name', width: 20 },
