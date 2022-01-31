@@ -23,7 +23,7 @@ async function buildExcel () {
   generateDirectoratesWorksheet(workbook, Directorate, tabNames.directorates)
   generatePDUsWorksheet(workbook, PDU, tabNames.pdus)
   generateServicesWorksheet(workbook, Service, tabNames.services)
-  await workbook.xlsx.writeFile(`output/excel/${date}/stats.xlsx`)
+  await workbook.xlsx.writeFile(`output/excel/${date}/${date}-stats.xlsx`)
 }
 
 async function runBuild () {
