@@ -66,7 +66,7 @@ function plans (params) {
 function risk (params) {
   if (params.risk) {
     const slug = slugify(params.risk, { lower: true })
-    const valid = ['very-high', 'high', 'medium', 'compliant', 'unknown']
+    const valid = ['very-high', 'high', 'medium', 'low', 'compliant', 'unknown']
     if (!valid.includes(slug)) throw Error(`params.risk not valid when constructing Service: ${JSON.stringify(params)}`)
     if (params.risk !== 'unknown' && params.status === 'not live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
   }

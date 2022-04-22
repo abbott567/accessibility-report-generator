@@ -13,7 +13,7 @@ const testData = require('../../../../data/directorates/directorate-1/pdus/d1-f1
 describe('Unt: Service -> Risk', () => {
   it('should throw an Error if risk provided is not valid', () => {
     const params = cloneDeep(testData)
-    params.risk = 'low'
+    params.risk = 'potato'
     const expectedErrorMessage = `params.risk not valid when constructing Service: ${JSON.stringify(params)}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })

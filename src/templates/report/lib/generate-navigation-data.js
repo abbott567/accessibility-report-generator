@@ -49,6 +49,10 @@ function generateNavigationData () {
     link: '/filters/medium-risk-services'
   })
   nav.filters.push({
+    name: 'Low risk services',
+    link: '/filters/low-risk-services'
+  })
+  nav.filters.push({
     name: 'Unknown risk services',
     link: '/filters/unknown-risk-services'
   })

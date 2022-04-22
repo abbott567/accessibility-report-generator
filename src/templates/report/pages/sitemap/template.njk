@@ -16,13 +16,13 @@
   <ul class="govuk-list govuk-list--bullet">
     {%- for parent in nav.main -%}
       <li>
-        <a href="{{parent.link}}">
+        <a class="govuk-link" href="{{parent.link}}">
           {{parent.name}}
         </a>
         {%- if parent.children.length > 0 -%}
           <ul class="govuk-list govuk-list--bullet">
             {%- for child in parent.children -%}
-              <li><a href="{{child.link}}">{{child.name}}</a></li>
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
@@ -36,13 +36,13 @@
   <ul class="govuk-list govuk-list--bullet">
     {%- for parent in nav.filters -%}
       <li>
-        <a href="{{parent.link}}">
+        <a class="govuk-link" href="{{parent.link}}">
           {{parent.name}}
         </a>
         {%- if parent.children.length > 0 -%}
           <ul class="govuk-list govuk-list--bullet">
             {%- for child in parent.children -%}
-              <li><a href="{{child.link}}">{{child.name}}</a></li>
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
@@ -56,13 +56,13 @@
   <ul class="govuk-list govuk-list--bullet">
     {%- for parent in nav.support_links -%}
       <li>
-        <a href="{{parent.link}}">
+        <a class="govuk-link" href="{{parent.link}}">
           {{parent.name}}
         </a>
         {%- if parent.children.length > 0 -%}
           <ul class="govuk-list govuk-list--bullet">
             {%- for child in parent.children -%}
-              <li><a href="{{child.link}}">{{child.name}}</a></li>
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
             {%- endfor -%}
           </ul>
         {%- endif -%}

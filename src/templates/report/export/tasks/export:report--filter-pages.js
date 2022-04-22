@@ -15,6 +15,7 @@ async function buildFilterPages (slug) {
   buildFilterPage('very-high-risk-services')
   buildFilterPage('high-risk-services')
   buildFilterPage('medium-risk-services')
+  buildFilterPage('low-risk-services')
   buildFilterPage('unknown-risk-services')
   buildFilterPage('citizen-facing-services')
   buildFilterPage('staff-facing-services')

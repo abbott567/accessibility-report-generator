@@ -6,6 +6,7 @@ html { font-family: $govuk-font-family }
 @import 'node_modules/govuk-frontend/govuk/all';
 
 // App components
+@import 'colours';
 @import '../../components/all';
 
 .app-inset-text {

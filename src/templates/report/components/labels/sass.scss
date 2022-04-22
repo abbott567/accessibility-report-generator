@@ -5,12 +5,6 @@
   li {
     display: inline;
     margin-right: .3rem;
-
-    .app-tag {
-      margin-top: .5em;
-      margin-bottom: .5em;
-      font-size: .7em;
-    }
   }
 }
 
@@ -21,4 +15,35 @@
       width: 40%;
     }
   }
+}
+
+.app-tag {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-size: .7em;
+}
+
+.app-tag--very-high-risk {
+  background-color: $risk-very-high-background-colour;
+  color: $risk-very-high-text-colour;
+}
+.app-tag--high-risk {
+  background-color: $risk-high-background-colour;
+  color: $risk-high-text-colour;
+}
+.app-tag--medium-risk {
+  background-color: $risk-medium-background-colour;
+  color: $risk-medium-text-colour;
+}
+.app-tag--low-risk {
+  background-color: $risk-low-background-colour;
+  color: $risk-low-text-colour;
+}
+.app-tag--compliant {
+  background-color: $risk-compliant-background-colour;
+  color: $risk-compliant-text-colour;
+}
+.app-tag--unkown-risk {
+  background-color: $risk-unknown-background-colour;
+  color: $risk-unknown-text-colour;
 }

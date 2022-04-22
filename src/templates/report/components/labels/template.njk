@@ -2,16 +2,19 @@
 
 {%- if service.risk === 'very-high' -%}
   {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'govuk-tag--red' -%}
+  {%- set risk_tag_class = 'app-tag--very-high-risk' -%}
 {%- elif service.risk === 'high' -%}
   {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'govuk-tag--orange' -%}
+  {%- set risk_tag_class = 'app-tag--high-risk' -%}
 {%- elif service.risk === 'medium' -%}
   {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'govuk-tag--yellow' -%}
+  {%- set risk_tag_class = 'app-tag--medium-risk' -%}
+{%- elif service.risk === 'low' -%}
+  {%- set risk_tag_text = service.risk + ' risk' -%}
+  {%- set risk_tag_class = 'app-tag--low-risk' -%}
 {%- elif service.risk === 'compliant' -%}
   {%- set risk_tag_text = service.risk -%}
-  {%- set risk_tag_class = 'govuk-tag--green' -%}
+  {%- set risk_tag_class = 'app-tag--compliant' -%}
 {%- else -%}
   {%- set risk_tag_text = service.risk + ' risk' -%}
   {%- set risk_tag_class = 'govuk-tag--grey' -%}

@@ -30,6 +30,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
     { header: '(Total) - Very high risk', key: 'all_risk_very_high', width: 20 },
     { header: '(Total) - High risk', key: 'all_risk_high', width: 20 },
     { header: '(Total) - Medium risk', key: 'all_risk_medium', width: 20 },
+    { header: '(Total) - Low risk', key: 'all_risk_low', width: 20 },
     { header: '(Total) - Unknown risk', key: 'all_risk_unknown', width: 20 },
     { header: '(Total) - No plans for compliance', key: 'all_no_plans', width: 20 },
     { header: '(Citizen) - Number of services', key: 'citizen_total', width: 20 },
@@ -43,6 +44,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
     { header: '(Citizen) - Very high risk', key: 'citizen_risk_very_high', width: 20 },
     { header: '(Citizen) - High risk', key: 'citizen_risk_high', width: 20 },
     { header: '(Citizen) - Medium risk', key: 'citizen_risk_medium', width: 20 },
+    { header: '(Citizen) - Low risk', key: 'citizen_risk_low', width: 20 },
     { header: '(Citizen) - Unknown risk', key: 'citizen_risk_unknown', width: 20 },
     { header: '(Citizen) - No plans for compliance', key: 'citizen_no_plans', width: 20 },
     { header: '(Staff) - Number of services', key: 'staff_total', width: 20 },
@@ -56,6 +58,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
     { header: '(Staff) - Very high risk', key: 'staff_risk_very_high', width: 20 },
     { header: '(Staff) - High risk', key: 'staff_risk_high', width: 20 },
     { header: '(Staff) - Medium risk', key: 'staff_risk_medium', width: 20 },
+    { header: '(Staff) - Low risk', key: 'staff_risk_low', width: 20 },
     { header: '(Staff) - Unknown risk', key: 'staff_risk_unknown', width: 20 },
     { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 }
   ]
@@ -80,6 +83,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
       all_risk_very_high: directorate.stats.services.all.risk_very_high,
       all_risk_high: directorate.stats.services.all.risk_high,
       all_risk_medium: directorate.stats.services.all.risk_medium,
+      all_risk_low: directorate.stats.services.all.risk_low,
       all_risk_unknown: directorate.stats.services.all.risk_unknown,
       all_no_plans: directorate.stats.services.all.no_plans,
       citizen_total: directorate.stats.services.citizen.total,
@@ -93,6 +97,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
       citizen_risk_very_high: directorate.stats.services.citizen.risk_very_high,
       citizen_risk_high: directorate.stats.services.citizen.risk_high,
       citizen_risk_medium: directorate.stats.services.citizen.risk_medium,
+      citizen_risk_low: directorate.stats.services.citizen.risk_low,
       citizen_risk_unknown: directorate.stats.services.citizen.risk_unknown,
       citizen_no_plans: directorate.stats.services.citizen.no_plans,
       staff_total: directorate.stats.services.staff.total,
@@ -106,6 +111,7 @@ function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
       staff_risk_very_high: directorate.stats.services.staff.risk_very_high,
       staff_risk_high: directorate.stats.services.staff.risk_high,
       staff_risk_medium: directorate.stats.services.staff.risk_medium,
+      staff_risk_low: directorate.stats.services.staff.risk_low,
       staff_risk_unknown: directorate.stats.services.staff.risk_unknown,
       staff_no_plans: directorate.stats.services.staff.no_plans
     })

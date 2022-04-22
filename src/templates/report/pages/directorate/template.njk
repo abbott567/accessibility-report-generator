@@ -29,7 +29,7 @@
       },
       {
         key: {
-          html: '<strong class="govuk-tag govuk-tag--red">Very high risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+          html: '<strong class="govuk-tag app-tag--very-high-risk">Very high risk<span class="govuk-visually-hidden"> services</span>:</strong>'
         },
         value: {
           text: directorate.stats.services.all.risk_very_high
@@ -37,7 +37,7 @@
       },
       {
         key: {
-          html: '<strong class="govuk-tag govuk-tag--orange">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+          html: '<strong class="govuk-tag app-tag--high-risk">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
         },
         value: {
           text: directorate.stats.services.all.risk_high
@@ -45,7 +45,7 @@
       },
       {
         key: {
-          html: '<strong class="govuk-tag govuk-tag--yellow">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+          html: '<strong class="govuk-tag app-tag--medium-risk">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
         },
         value: {
           text: directorate.stats.services.all.risk_medium
@@ -53,7 +53,15 @@
       },
       {
         key: {
-          html: '<strong class="govuk-tag govuk-tag--green">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
+          html: '<strong class="govuk-tag app-tag--low-risk">Low risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.services.all.risk_low
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag app-tag--compliant">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
         },
         value: {
           text: directorate.stats.services.all.compliant
