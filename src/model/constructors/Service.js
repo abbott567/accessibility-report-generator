@@ -125,7 +125,9 @@ class Service {
     if (this.evidence.screen_magnifier.status === 'passed') this.stats.progress += 20
     if (this.evidence.voice_controller.status === 'passed') this.stats.progress += 20
     if (this.evidence.statement.status === 'done') this.stats.progress += 20
-    if (this.stats.progress === 100) this.risk = 'compliant'
+    if (this.status === 'live') {
+      if (this.stats.progress === 100) this.risk = 'compliant'
+    }
   }
 }
 

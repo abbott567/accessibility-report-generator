@@ -238,6 +238,7 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.critical = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -268,6 +269,7 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.critical = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -300,6 +302,7 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.sunsetting = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -331,6 +334,7 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.sunsetting = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -364,6 +368,7 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.plans = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -396,12 +401,14 @@ describe('Int: Directorate -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.plans = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
     expect(directorate.stats.services.all.live).to.eql(1, 'stats.services.all.live')
     expect(directorate.stats.services.all.not_live).to.eql(0, 'stats.services.all.not_live')
     expect(directorate.stats.services.all.compliant).to.eql(0, 'stats.services.all.compliant')
+    expect(directorate.stats.services.all.live_compliant).to.eql(0, 'stats.services.all.compliant')
     expect(directorate.stats.services.all.not_compliant).to.eql(1, 'stats.services.all.not_compliant')
     expect(directorate.stats.services.citizen.total).to.eql(1, 'stats.services.citizen.total')
     expect(directorate.stats.services.citizen.live).to.eql(1, 'stats.services.citizen.live')

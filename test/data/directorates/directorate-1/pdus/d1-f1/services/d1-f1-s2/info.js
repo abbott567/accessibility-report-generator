@@ -5,21 +5,28 @@ module.exports = {
   type: 'staff',
   sunsetting: 'false',
   plans: 'true',
+  critical: 'false',
+  risk: 'unknown',
   evidence: {
     wcag: {
-      status: 'not done'
+      status: 'not done',
+      date: 'unknown'
     },
     screen_reader: {
-      status: 'not done'
+      status: 'not done',
+      date: 'unknown'
     },
     voice_controller: {
-      status: 'not done'
+      status: 'not done',
+      date: 'unknown'
     },
     screen_magnifier: {
-      status: 'not done'
+      status: 'not done',
+      date: 'unknown'
     },
     statement: {
-      status: 'not done'
+      status: 'not done',
+      date: 'unknown'
     }
   }
 }

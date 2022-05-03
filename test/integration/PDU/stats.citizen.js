@@ -192,6 +192,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.critical = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -217,6 +218,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.critical = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -244,6 +246,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.sunsetting = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -270,6 +273,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.sunsetting = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -298,6 +302,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.plans = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -325,6 +330,7 @@ describe('Int: PDU -> Stats -> Citizen', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'citizen'
     paramsService.plans = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(pdu.stats.services.all.total).to.eql(1, 'stats.services.all.total')

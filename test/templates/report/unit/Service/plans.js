@@ -22,12 +22,10 @@ describe('Unt: Service -> Plans', () => {
     const expectedResult = 'false'
     expect(service.plans).to.equal(expectedResult)
   })
-  it('should construct with a plans value of true if none is provided', () => {
+  it('should throw an error if no plans value is provided', () => {
     const params = cloneDeep(testData)
     params.plans = undefined
-    const service = new Service(params)
-    const expectedResult = 'true'
-    expect(service.plans).to.equal(expectedResult)
+    expect(() => { Service(params) }).to.throw(Error)
   })
   it('should throw an error if params.plans is not a boolean', () => {
     const params = cloneDeep(testData)

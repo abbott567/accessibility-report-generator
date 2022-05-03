@@ -29,11 +29,9 @@ describe('Unt: Service -> Critical', () => {
     const expectedResult = 'false'
     expect(service.critical).to.equal(expectedResult)
   })
-  it('should construct with a critical value of false if none is provided', () => {
+  it('should throw an error if no critical value is provided', () => {
     const params = cloneDeep(testData)
     params.critical = undefined
-    const service = new Service(params)
-    const expectedResult = 'false'
-    expect(service.critical).to.equal(expectedResult)
+    expect(() => { Service(params) }).to.throw(Error)
   })
 })

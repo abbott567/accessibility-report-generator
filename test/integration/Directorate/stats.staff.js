@@ -277,6 +277,7 @@ describe('Int: Directorate -> Stats -> Staff', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'staff'
     paramsService.critical = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -312,6 +313,7 @@ describe('Int: Directorate -> Stats -> Staff', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'staff'
     paramsService.critical = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -349,6 +351,7 @@ describe('Int: Directorate -> Stats -> Staff', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'staff'
     paramsService.sunsetting = 'true'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')
@@ -385,6 +388,7 @@ describe('Int: Directorate -> Stats -> Staff', () => {
     paramsService.PDUID = pdu.id
     paramsService.type = 'staff'
     paramsService.sunsetting = 'false'
+    paramsService.risk = 'very-high'
     const service = new Service(paramsService)
     service.save()
     expect(directorate.stats.services.all.total).to.eql(1, 'stats.services.all.total')

@@ -33,6 +33,11 @@ function PDU (params) {
 
 function status (params) {
   if (params.status === undefined) throw Error(`params.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.status) {
+    const slug = slugify(params.status, { lower: true })
+    const valid = ['live', 'not-live']
+    if (!valid.includes(slug)) throw Error(`params.status not valid when constructing Service: ${JSON.stringify(params)}`)
+  }
 }
 
 function type (params) {
@@ -40,6 +45,7 @@ function type (params) {
 }
 
 function critical (params) {
+  if (params.critical === undefined) throw Error(`params.critical not found when constructing Service: ${JSON.stringify(params)}`)
   if (params.critical) {
     const slug = slugify(params.critical, { lower: true })
     const valid = ['true', 'false']
@@ -48,6 +54,7 @@ function critical (params) {
 }
 
 function sunsetting (params) {
+  if (params.sunsetting === undefined) throw Error(`params.sunsetting not found when constructing Service: ${JSON.stringify(params)}`)
   if (params.sunsetting) {
     const slug = slugify(params.sunsetting, { lower: true })
     const valid = ['true', 'false']
@@ -56,6 +63,7 @@ function sunsetting (params) {
 }
 
 function plans (params) {
+  if (params.plans === undefined) throw Error(`params.plans not found when constructing Service: ${JSON.stringify(params)}`)
   if (params.plans) {
     const slug = slugify(params.plans, { lower: true })
     const valid = ['true', 'false']
@@ -64,11 +72,12 @@ function plans (params) {
 }
 
 function risk (params) {
+  if (params.risk === undefined) throw Error(`params.risk not found when constructing Service: ${JSON.stringify(params)}`)
   if (params.risk) {
     const slug = slugify(params.risk, { lower: true })
     const valid = ['very-high', 'high', 'medium', 'low', 'compliant', 'unknown']
     if (!valid.includes(slug)) throw Error(`params.risk not valid when constructing Service: ${JSON.stringify(params)}`)
-    if (params.risk !== 'unknown' && params.status === 'not live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
+    if (params.risk !== 'unknown' && params.status === 'not-live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
   }
 }
 
@@ -83,6 +92,7 @@ function evidence (params) {
 
 function wcag (params) {
   if (params.evidence.wcag.status === undefined) throw Error(`params.evidence.wcag.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence.wcag.date === undefined) throw Error(`params.evidence.wcag.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.wcag.status, { lower: true })
   const valid = ['not-done', 'passed', 'failed']
   if (!valid.includes(slug)) throw Error(`params.evidence.wcag.status not valid when constructing Service: ${JSON.stringify(params)}`)
@@ -91,6 +101,7 @@ function wcag (params) {
 
 function screenReader (params) {
   if (params.evidence.screen_reader.status === undefined) throw Error(`params.evidence.screen_reader.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence.screen_reader.date === undefined) throw Error(`params.evidence.screen_reader.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.screen_reader.status, { lower: true })
   const valid = ['not-done', 'passed', 'failed']
   if (!valid.includes(slug)) throw Error(`params.evidence.screen_reader.status not valid when constructing Service: ${JSON.stringify(params)}`)
@@ -99,6 +110,7 @@ function screenReader (params) {
 
 function screenMagnifier (params) {
   if (params.evidence.screen_magnifier.status === undefined) throw Error(`params.evidence.screen_magnifier.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence.screen_magnifier.date === undefined) throw Error(`params.evidence.screen_magnifier.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.screen_magnifier.status, { lower: true })
   const valid = ['not-done', 'passed', 'failed']
   if (!valid.includes(slug)) throw Error(`params.evidence.screen_magnifier.status not valid when constructing Service: ${JSON.stringify(params)}`)
@@ -107,6 +119,7 @@ function screenMagnifier (params) {
 
 function voiceController (params) {
   if (params.evidence.voice_controller.status === undefined) throw Error(`params.evidence.voice_controller.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence.voice_controller.date === undefined) throw Error(`params.evidence.voice_controller.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.voice_controller.status, { lower: true })
   const valid = ['not-done', 'passed', 'failed']
   if (!valid.includes(slug)) throw Error(`params.evidence.voice_controller.status not valid when constructing Service: ${JSON.stringify(params)}`)
@@ -115,6 +128,7 @@ function voiceController (params) {
 
 function statement (params) {
   if (params.evidence.statement.status === undefined) throw Error(`params.evidence.statement.status not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence.statement.date === undefined) throw Error(`params.evidence.statement.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.statement.status, { lower: true })
   const valid = ['not-done', 'done']
   if (!valid.includes(slug)) throw Error(`params.evidence.statement.status not valid when constructing Service: ${JSON.stringify(params)}`)

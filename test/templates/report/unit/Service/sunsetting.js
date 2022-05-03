@@ -28,11 +28,9 @@ describe('Unt: Service -> Sunsetting', () => {
     const expectedResult = 'false'
     expect(service.sunsetting).to.equal(expectedResult)
   })
-  it('should construct with a sunsetting value of false if none is provided', () => {
+  it('should throw an error if no sunsetting value is provided', () => {
     const params = cloneDeep(testData)
     params.sunsetting = undefined
-    const service = new Service(params)
-    const expectedResult = 'false'
-    expect(service.sunsetting).to.equal(expectedResult)
+    expect(() => { Service(params) }).to.throw(Error)
   })
 })

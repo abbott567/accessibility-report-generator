@@ -6,24 +6,24 @@ function generateStatsSectionData (params) {
       text: '',
       stats: {
         rate: adjusted ? params.stats.rates.adjusted_compliance.total : params.stats.rates.true_compliance.total,
-        compliant: params.stats.services.all.compliant,
-        total: adjusted ? (params.stats.services.all.live - params.stats.services.all.no_plans) : params.stats.services.all.live
+        compliant: params.stats.services.all.live_compliant,
+        total: adjusted ? (params.stats.services.all.live - params.stats.services.all.live_no_plans) : params.stats.services.all.live
       }
     },
     citizen: {
       text: '',
       stats: {
         rate: adjusted ? params.stats.rates.adjusted_compliance.citizen : params.stats.rates.true_compliance.citizen,
-        compliant: params.stats.services.citizen.compliant,
-        total: adjusted ? (params.stats.services.citizen.live - params.stats.services.citizen.no_plans) : params.stats.services.citizen.live
+        compliant: params.stats.services.citizen.live_compliant,
+        total: adjusted ? (params.stats.services.citizen.live - params.stats.services.citizen.live_no_plans) : params.stats.services.citizen.live
       }
     },
     staff: {
       text: '',
       stats: {
         rate: adjusted ? params.stats.rates.adjusted_compliance.staff : params.stats.rates.true_compliance.staff,
-        compliant: params.stats.services.staff.compliant,
-        total: adjusted ? (params.stats.services.staff.live - params.stats.services.staff.no_plans) : params.stats.services.staff.live
+        compliant: params.stats.services.staff.live_compliant,
+        total: adjusted ? (params.stats.services.staff.live - params.stats.services.staff.live_no_plans) : params.stats.services.staff.live
       }
     }
   }

@@ -4,9 +4,10 @@ const PDU = require('./constructors/PDU')
 const Service = require('./constructors/Service')
 
 const dataLoader = require('../utils/data-loader.js')
-const orgData = dataLoader()
 
-function buildDataModel () {
+function buildDataModel (params) {
+  const orgData = dataLoader(params)
+
   /* istanbul ignore if */
   if (orgData.info === undefined) throw Error('Could not load info.js for Org')
   const org = new Org(orgData.info)

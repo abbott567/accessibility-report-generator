@@ -24,12 +24,10 @@ describe('Unt: Service -> Risk', () => {
     const expectedResult = 'medium'
     expect(service.risk).to.equal(expectedResult)
   })
-  it('should construct with a default risk of "very-high" if one is not provided', () => {
+  it('should throw an error if no risk value is provided', () => {
     const params = cloneDeep(testData)
     params.risk = undefined
-    const service = new Service(params)
-    const expectedResult = 'very-high'
-    expect(service.risk).to.equal(expectedResult)
+    expect(() => { Service(params) }).to.throw(Error)
   })
   it('should force risk status to compliant if stats.progress is 100', () => {
     const params = cloneDeep(testData)
@@ -48,7 +46,7 @@ describe('Unt: Service -> Risk', () => {
     sinon.spy(console, 'warn')
     const spyCall = console.warn
     const params = cloneDeep(testData)
-    params.status = 'not live'
+    params.status = 'not-live'
     params.risk = 'medium'
     const service = new Service(params)
     service.save()
