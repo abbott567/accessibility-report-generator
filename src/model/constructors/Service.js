@@ -121,6 +121,7 @@ class Service {
 
   #generateStats () {
     if (this.evidence.wcag.status === 'passed') this.stats.progress += 20
+    if (this.evidence.wcag.status === 'basic') this.stats.progress += 10
     if (this.evidence.screen_reader.status === 'passed') this.stats.progress += 20
     if (this.evidence.screen_magnifier.status === 'passed') this.stats.progress += 20
     if (this.evidence.voice_controller.status === 'passed') this.stats.progress += 20
