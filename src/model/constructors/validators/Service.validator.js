@@ -94,7 +94,7 @@ function wcag (params) {
   if (params.evidence.wcag.status === undefined) throw Error(`params.evidence.wcag.status not found when constructing Service: ${JSON.stringify(params)}`)
   if (params.evidence.wcag.date === undefined) throw Error(`params.evidence.wcag.date not found when constructing Service: ${JSON.stringify(params)}`)
   const slug = slugify(params.evidence.wcag.status, { lower: true })
-  const valid = ['not-done', 'passed', 'failed']
+  const valid = ['not-done', 'passed', 'failed', 'basic']
   if (!valid.includes(slug)) throw Error(`params.evidence.wcag.status not valid when constructing Service: ${JSON.stringify(params)}`)
   params.evidence.wcag.status = slug
 }
