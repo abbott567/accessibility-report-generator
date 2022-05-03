@@ -48,7 +48,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.wcag.status|prettify|capitalize -}}
-              {%- if service.evidence.wcag.date == 'unknown' -%}
+              {%- if service.evidence.wcag.date !== 'unknown' -%}
                 {{ ', ' }}{{ service.evidence.wcag.date }}
               {%- endif -%}
             </dd>
@@ -59,7 +59,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.screen_reader.status|prettify|capitalize -}}
-              {%- if service.evidence.screen_reader.date == 'unknown' -%}
+              {%- if service.evidence.screen_reader.date !== 'unknown' -%}
                 {{ ', ' }}{{ service.evidence.screen_reader.date }}
               {%- endif -%}
             </dd>
@@ -70,7 +70,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.voice_controller.status|prettify|capitalize -}}
-              {%- if service.evidence.voice_controller.date == 'unknown' -%}
+              {%- if service.evidence.voice_controller.date !== 'unknown' -%}
                 {{ ', ' }}{{ service.evidence.voice_controller.date }}
               {%- endif -%}
             </dd>
@@ -81,7 +81,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.screen_magnifier.status|prettify|capitalize -}}
-              {%- if service.evidence.screen_magnifier.date == 'unknown' -%}
+              {%- if service.evidence.screen_magnifier.date !== 'unknown' -%}
                 {{ ', ' }}{{ service.evidence.screen_magnifier.date }}
               {%- endif -%}
             </dd>
@@ -92,7 +92,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.statement.status|prettify|capitalize -}}
-              {%- if service.evidence.statement.date == 'unknown' -%}
+              {%- if service.evidence.statement.date !== 'unknown' -%}
                 {{ ', ' }}{{ service.evidence.statement.date }}
               {%- endif -%}
             </dd>
