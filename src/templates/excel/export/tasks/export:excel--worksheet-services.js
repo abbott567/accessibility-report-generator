@@ -24,10 +24,14 @@ function generateServicesWorksheet (workbook, Service, tabName) {
     { header: 'Risk', key: 'service_risk', width: 20 },
     { header: 'Plans for compliance', key: 'service_plans', width: 20 },
     { header: 'WCAG tests', key: 'service_wcag_tests', width: 20 },
+    { header: 'WCAG tests date', key: 'service_wcag_tests_date', width: 20 },
     { header: 'Screen reader tests', key: 'service_screen_reader_tests', width: 20 },
+    { header: 'Screen reader tests date', key: 'service_screen_reader_tests_date', width: 20 },
     { header: 'Voice controller tests', key: 'service_voice_controller_tests', width: 20 },
+    { header: 'Voice controller tests date', key: 'service_voice_controller_tests_date', width: 20 },
     { header: 'Screen magnifier tests', key: 'service_screen_magnifier_tests', width: 20 },
     { header: 'Accessibility Statement', key: 'service_accessibility_statement', width: 20 },
+    { header: 'Accessibility Statement date', key: 'service_accessibility_statement_date', width: 20 },
     { header: 'Notes', key: 'service_notes', width: 20 }
   ]
   services.forEach(service => {
@@ -45,10 +49,14 @@ function generateServicesWorksheet (workbook, Service, tabName) {
       service_risk: service.risk,
       service_plans: service.plans,
       service_wcag_tests: service.evidence.wcag.status,
+      service_wcag_tests_date: service.evidence.wcag.date,
       service_screen_reader_tests: service.evidence.screen_reader.status,
+      service_screen_reader_tests_date: service.evidence.screen_reader.date,
       service_voice_controller_tests: service.evidence.voice_controller.status,
+      service_voice_controller_tests_date: service.evidence.voice_controller.date,
       service_screen_magnifier_tests: service.evidence.screen_magnifier.status,
       service_accessibility_statement: service.evidence.statement.status,
+      service_accessibility_statement_date: service.evidence.statement.date,
       service_notes: service.notes.status
     })
   })
