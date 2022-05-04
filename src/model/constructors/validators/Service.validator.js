@@ -1,4 +1,5 @@
 const slugify = require('slugify')
+const datefns = require('date-fns')
 
 function params (params) {
   if (params === undefined) throw Error('params not provided for Service constructor')
@@ -83,56 +84,40 @@ function risk (params) {
 
 function evidence (params) {
   if (params.evidence === undefined) throw Error(`params.evidence not found when constructing Service: ${JSON.stringify(params)}`)
-  wcag(params)
-  screenReader(params)
-  screenMagnifier(params)
-  voiceController(params)
-  statement(params)
+  checkEvidence(params)
 }
 
-function wcag (params) {
-  if (params.evidence.wcag.status === undefined) throw Error(`params.evidence.wcag.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.evidence.wcag.date === undefined) throw Error(`params.evidence.wcag.date not found when constructing Service: ${JSON.stringify(params)}`)
-  const slug = slugify(params.evidence.wcag.status, { lower: true })
-  const valid = ['not-done', 'passed', 'failed', 'basic']
-  if (!valid.includes(slug)) throw Error(`params.evidence.wcag.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  params.evidence.wcag.status = slug
+function checkEvidence (params) {
+  const evidence = ['wcag', 'screen_reader', 'screen_magnifier', 'voice_controller', 'statement']
+  evidence.forEach(ev => {
+    const set = params.evidence[ev]
+    // Status
+    const status = set.status
+    if (status === undefined) throw Error(`params.evidence.${ev}.status not found when constructing Service: ${params.name}`)
+    const slug = slugify(status, { lower: true })
+    const valid = ['done', 'not-done', 'passed', 'failed', 'basic']
+    if (!valid.includes(slug)) throw Error(`params.evidence.${ev}.status (${slug}) not valid when constructing Service: ${params.name}`)
+    // Date
+    const date = set.date
+    if (date === undefined) throw Error(`params.evidence.${ev}.date not found when constructing Service: ${params.name}`)
+    const validDate = checkDate(date, params.name)
+    set.status = slug
+    set.date = validDate
+  })
 }
 
-function screenReader (params) {
-  if (params.evidence.screen_reader.status === undefined) throw Error(`params.evidence.screen_reader.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.evidence.screen_reader.date === undefined) throw Error(`params.evidence.screen_reader.date not found when constructing Service: ${JSON.stringify(params)}`)
-  const slug = slugify(params.evidence.screen_reader.status, { lower: true })
-  const valid = ['not-done', 'passed', 'failed']
-  if (!valid.includes(slug)) throw Error(`params.evidence.screen_reader.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  params.evidence.screen_reader.status = slug
+function checkDate (date, serviceName) {
+  const allowedExceptions = ['n/a', 'unknown']
+  if (!allowedExceptions.includes(date)) {
+    const parseAttempt = datefns.parse(date, 'MMMM yyyy', new Date())
+    const isDate = isValidDate(parseAttempt)
+    if (!isDate) throw Error(`Date not valid when constructing service: ${serviceName} - ${date}`)
+  }
+  return date
 }
 
-function screenMagnifier (params) {
-  if (params.evidence.screen_magnifier.status === undefined) throw Error(`params.evidence.screen_magnifier.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.evidence.screen_magnifier.date === undefined) throw Error(`params.evidence.screen_magnifier.date not found when constructing Service: ${JSON.stringify(params)}`)
-  const slug = slugify(params.evidence.screen_magnifier.status, { lower: true })
-  const valid = ['not-done', 'passed', 'failed']
-  if (!valid.includes(slug)) throw Error(`params.evidence.screen_magnifier.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  params.evidence.screen_magnifier.status = slug
-}
-
-function voiceController (params) {
-  if (params.evidence.voice_controller.status === undefined) throw Error(`params.evidence.voice_controller.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.evidence.voice_controller.date === undefined) throw Error(`params.evidence.voice_controller.date not found when constructing Service: ${JSON.stringify(params)}`)
-  const slug = slugify(params.evidence.voice_controller.status, { lower: true })
-  const valid = ['not-done', 'passed', 'failed']
-  if (!valid.includes(slug)) throw Error(`params.evidence.voice_controller.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  params.evidence.voice_controller.status = slug
-}
-
-function statement (params) {
-  if (params.evidence.statement.status === undefined) throw Error(`params.evidence.statement.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.evidence.statement.date === undefined) throw Error(`params.evidence.statement.date not found when constructing Service: ${JSON.stringify(params)}`)
-  const slug = slugify(params.evidence.statement.status, { lower: true })
-  const valid = ['not-done', 'done']
-  if (!valid.includes(slug)) throw Error(`params.evidence.statement.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  params.evidence.statement.status = slug
+function isValidDate (date) {
+  return date instanceof Date && !isNaN(date)
 }
 
 function notes (params) {
