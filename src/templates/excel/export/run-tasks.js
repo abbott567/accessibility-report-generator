@@ -1,3 +1,4 @@
+require('colors')
 const Excel = require('exceljs')
 const date = require('../../../utils/today-date')
 const fs = require('fs-jetpack')

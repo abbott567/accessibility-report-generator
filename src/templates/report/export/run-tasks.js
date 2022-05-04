@@ -1,3 +1,4 @@
+require('colors')
 const buildDataModel = require('../../../model/build-data-model')
 buildDataModel()
 
