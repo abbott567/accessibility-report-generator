@@ -11,13 +11,13 @@ describe('Unt: Service -> Voice Controller', () => {
   it('should throw an Error if no voice_controller evidence provided', () => {
     const params = cloneDeep(testData)
     params.evidence.voice_controller.status = undefined
-    const expectedErrorMessage = `params.evidence.voice_controller.status not found when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.voice_controller.status not found when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should throw an Error if voice_controller evidence provided is invalid', () => {
     const params = cloneDeep(testData)
     params.evidence.voice_controller.status = 'potato'
-    const expectedErrorMessage = `params.evidence.voice_controller.status not valid when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.voice_controller.status (potato) not valid when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should build with voice_controller status "passed" if provided in lowercase', () => {

@@ -11,13 +11,13 @@ describe('Unt: Service -> Screen Magnifier', () => {
   it('should throw an Error if no screen_magnifier evidence provided', () => {
     const params = cloneDeep(testData)
     params.evidence.screen_magnifier.status = undefined
-    const expectedErrorMessage = `params.evidence.screen_magnifier.status not found when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.screen_magnifier.status not found when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should throw an Error if screen_magnifier evidence provided is invalid', () => {
     const params = cloneDeep(testData)
     params.evidence.screen_magnifier.status = 'potato'
-    const expectedErrorMessage = `params.evidence.screen_magnifier.status not valid when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.screen_magnifier.status (potato) not valid when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should build with screen_magnifier status "passed" if provided in lowercase', () => {

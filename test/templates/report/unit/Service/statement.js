@@ -11,13 +11,13 @@ describe('Unt: Service -> Statement', () => {
   it('should throw an Error if no statement evidence provided', () => {
     const params = cloneDeep(testData)
     params.evidence.statement.status = undefined
-    const expectedErrorMessage = `params.evidence.statement.status not found when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.statement.status not found when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should throw an Error if statement evidence provided is invalid', () => {
     const params = cloneDeep(testData)
     params.evidence.statement.status = 'potato'
-    const expectedErrorMessage = `params.evidence.statement.status not valid when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.statement.status (potato) not valid when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should build with statement status "done" if provided in lowercase', () => {

@@ -11,13 +11,13 @@ describe('Unt: Service -> Screen Reader', () => {
   it('should throw an Error if no screen_reader evidence provided', () => {
     const params = cloneDeep(testData)
     params.evidence.screen_reader.status = undefined
-    const expectedErrorMessage = `params.evidence.screen_reader.status not found when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.screen_reader.status not found when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should throw an Error if screen_reader evidence provided is invalid', () => {
     const params = cloneDeep(testData)
     params.evidence.screen_reader.status = 'potato'
-    const expectedErrorMessage = `params.evidence.screen_reader.status not valid when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.screen_reader.status (potato) not valid when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should build with screen_reader status "passed" if provided in lowercase', () => {

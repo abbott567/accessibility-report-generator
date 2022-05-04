@@ -11,13 +11,13 @@ describe('Unt: Service -> WCAG', () => {
   it('should throw an Error if no wcag evidence provided', () => {
     const params = cloneDeep(testData)
     params.evidence.wcag.status = undefined
-    const expectedErrorMessage = `params.evidence.wcag.status not found when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.wcag.status not found when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should throw an Error if wcag evidence provided is invalid', () => {
     const params = cloneDeep(testData)
     params.evidence.wcag.status = 'potato'
-    const expectedErrorMessage = `params.evidence.wcag.status not valid when constructing Service: ${JSON.stringify(params)}`
+    const expectedErrorMessage = `params.evidence.wcag.status (potato) not valid when constructing Service: ${params.name}`
     expect(() => new Service(params)).to.throw(expectedErrorMessage)
   })
   it('should build with wcag status "passed" if provided in lowercase', () => {
