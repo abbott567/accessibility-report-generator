@@ -125,7 +125,7 @@ class SuperMethodHasServices {
     this.stats.rates.true_compliance.staff = percent(this.stats.services.staff.live_compliant).of(this.stats.services.staff.live)
     this.stats.rates.adjusted_compliance.total = percent(this.stats.services.all.live_compliant).of(this.stats.services.all.live - this.stats.services.all.live_no_plans)
     this.stats.rates.adjusted_compliance.citizen = percent(this.stats.services.citizen.live_compliant).of(this.stats.services.citizen.live - this.stats.services.citizen.live_no_plans)
-    this.stats.rates.adjusted_compliance.staff = percent(this.stats.services.staff.compliant).of(this.stats.services.staff.live - this.stats.services.staff.live_no_plans)
+    this.stats.rates.adjusted_compliance.staff = percent(this.stats.services.staff.live_compliant).of(this.stats.services.staff.live - this.stats.services.staff.live_no_plans)
   }
 }
 
