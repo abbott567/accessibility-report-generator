@@ -48,7 +48,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.wcag.status|prettify|capitalize -}}
-              {%- if service.evidence.wcag.date !== 'unknown' -%}
+              {%- if service.evidence.wcag.date !== 'unknown' and service.evidence.wcag.date !== 'n/a' -%}
                 {{ ', ' }}{{ service.evidence.wcag.date }}
               {%- endif -%}
             </dd>
@@ -59,7 +59,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.screen_reader.status|prettify|capitalize -}}
-              {%- if service.evidence.screen_reader.date !== 'unknown' -%}
+              {%- if service.evidence.screen_reader.date !== 'unknown' and service.evidence.screen_reader.date !== 'n/a' -%}
                 {{ ', ' }}{{ service.evidence.screen_reader.date }}
               {%- endif -%}
             </dd>
@@ -70,7 +70,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.voice_controller.status|prettify|capitalize -}}
-              {%- if service.evidence.voice_controller.date !== 'unknown' -%}
+              {%- if service.evidence.voice_controller.date !== 'unknown' and service.evidence.voice_controller.date !== 'n/a' -%}
                 {{ ', ' }}{{ service.evidence.voice_controller.date }}
               {%- endif -%}
             </dd>
@@ -81,7 +81,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.screen_magnifier.status|prettify|capitalize -}}
-              {%- if service.evidence.screen_magnifier.date !== 'unknown' -%}
+              {%- if service.evidence.screen_magnifier.date !== 'unknown' and service.evidence.screen_magnifier.date !== 'n/a' -%}
                 {{ ', ' }}{{ service.evidence.screen_magnifier.date }}
               {%- endif -%}
             </dd>
@@ -92,7 +92,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{- service.evidence.statement.status|prettify|capitalize -}}
-              {%- if service.evidence.statement.date !== 'unknown' -%}
+              {%- if service.evidence.statement.date !== 'unknown' and service.evidence.statement.date !== 'n/a' -%}
                 {{ ', ' }}{{ service.evidence.statement.date }}
               {%- endif -%}
             </dd>
