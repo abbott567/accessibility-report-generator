@@ -1,6 +1,6 @@
 {
   "name": "accessibility-report-generator",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A report generator to monitor accessibility compliance in large organisations.",
   "scripts": {
     "export:report": "node src/templates/report/export/run-tasks.js",
