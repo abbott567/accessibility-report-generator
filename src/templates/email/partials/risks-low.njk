@@ -1,14 +1,21 @@
+{%- set plural -%}
+  {%- if data.thisMonth.pdu.stats.services.all.risk_low === 1 -%}
+    service is
+  {%- else -%}
+    services are
+  {%- endif -%}
+{%- endset -%}
 <p>
-  {{data.thisMonth.pdu.stats.services.all.risk_low}} services are considered low risk.
+  {{data.thisMonth.pdu.stats.services.all.risk_low}} {{plural}} considered low risk.
   {%- if (data.previousMonth) -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_low === data.previousMonth.pdu.stats.services.all.risk_low) -%}
-      This is the same as last month.
+      {{' '}}This is the same as last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_low > data.previousMonth.pdu.stats.services.all.risk_low) -%}
-      This is an increase from {{data.previousMonth.pdu.stats.services.all.risk_low}} from last month.
+      {{' '}}This is an increase from {{data.previousMonth.pdu.stats.services.all.risk_low}} from last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_low < data.previousMonth.pdu.stats.services.all.risk_low) -%}
-      This is a decrease from {{data.previousMonth.pdu.stats.services.all.risk_low}} from last month.
+      {{' '}}This is a decrease from {{data.previousMonth.pdu.stats.services.all.risk_low}} from last month.
     {%- endif -%}
   {%- endif -%}
 </p>

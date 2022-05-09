@@ -2,13 +2,13 @@
   True compliance is {{data.thisMonth.pdu.stats.rates.true_compliance.total}}%.
   {%- if (data.previousMonth) -%}
     {%- if (data.thisMonth.pdu.stats.rates.true_compliance.total === data.previousMonth.pdu.stats.rates.true_compliance.total) -%}
-      This is the same as last month.
+      {{' '}}This is the same as last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.rates.true_compliance.total > data.previousMonth.pdu.stats.rates.true_compliance.total) -%}
-      This is an increase from {{data.previousMonth.pdu.stats.rates.true_compliance.total}}% from last month.
+      {{' '}}This is an increase from {{data.previousMonth.pdu.stats.rates.true_compliance.total}}% from last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.rates.true_compliance.total < data.previousMonth.pdu.stats.rates.true_compliance.total) -%}
-      This is an decrease from {{data.previousMonth.pdu.stats.rates.true_compliance.total}}% from last month.
+      {{' '}}This is an decrease from {{data.previousMonth.pdu.stats.rates.true_compliance.total}}% from last month.
     {%- endif -%}
   {%- endif -%}
 </p>

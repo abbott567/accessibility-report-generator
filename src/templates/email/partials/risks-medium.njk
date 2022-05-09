@@ -1,14 +1,21 @@
+{%- set plural -%}
+  {%- if data.thisMonth.pdu.stats.services.all.risk_medium === 1 -%}
+    service is
+  {%- else -%}
+    services are
+  {%- endif -%}
+{%- endset -%}
 <p>
-  {{data.thisMonth.pdu.stats.services.all.risk_medium}} services are considered medium risk.
+  {{data.thisMonth.pdu.stats.services.all.risk_medium}} {{plural}} considered medium risk.
   {%- if (data.previousMonth) -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_medium === data.previousMonth.pdu.stats.services.all.risk_medium) -%}
-      This is the same as last month.
+      {{' '}}This is the same as last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_medium > data.previousMonth.pdu.stats.services.all.risk_medium) -%}
-      This is an increase from {{data.previousMonth.pdu.stats.services.all.risk_medium}} from last month.
+      {{' '}}This is an increase from {{data.previousMonth.pdu.stats.services.all.risk_medium}} from last month.
     {%- endif -%}
     {%- if (data.thisMonth.pdu.stats.services.all.risk_medium < data.previousMonth.pdu.stats.services.all.risk_medium) -%}
-      This is a decrease from {{data.previousMonth.pdu.stats.services.all.risk_medium}} from last month.
+      {{' '}}This is a decrease from {{data.previousMonth.pdu.stats.services.all.risk_medium}} from last month.
     {%- endif -%}
   {%- endif -%}
 </p>
