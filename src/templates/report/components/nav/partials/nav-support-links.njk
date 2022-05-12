@@ -10,19 +10,23 @@
     {% endif %}
 
     <li class="app-nav__list-item{{' app-nav__list-item--active' if parentActive}}{{' app-nav__list-item--child-active' if parentsChildIsActive}}">
-      <a class="govuk-link govuk-link--no-visited-state" href="{{parent.link}}">{{parent.name}}</a>
+      <a class="govuk-link govuk-link--no-visited-state" href="{{parent.link}}" {{'aria-current="page"' if parentActive}}>
+        {{parent.name}}
+      </a>
     </li>
     {%- if parentActive or parentsChildIsActive -%}
-    <li>
-      <ul>
-        {%- for child in parent.children -%}
-          {% set thisChildIsActive = current_url === child.link %}
-          <li class="app-nav__list-sub-item{{' app-nav__list-sub-item--active' if thisChildIsActive}}">
-            <a class="govuk-link govuk-link--no-visited-state" href="{{child.link}}">{{child.name}}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </li>
+      <li>
+        <ul>
+          {%- for child in parent.children -%}
+            {% set thisChildIsActive = current_url === child.link %}
+            <li class="app-nav__list-sub-item{{' app-nav__list-sub-item--active' if thisChildIsActive}}">
+              <a class="govuk-link govuk-link--no-visited-state" href="{{child.link}}">
+                {{child.name}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </li>
     {%- endif -%}
   {%- endfor -%}       
 </ul>
