@@ -27,12 +27,12 @@
         <ul class="govuk-list govuk-list--bullet">
           {% for service in services %}
             <li class="govuk-!-margin-bottom-5">
-            {{service.name}}<br />
-            <span class="govuk-visually-hidden">
-              Labels:
-            </span>
-            {{- labels(service, {add_classes: 'app-tag'}) -}}
-          </li>
+              <a class="govuk-link" href="/{{directorate.slug}}/{{pdu.slug}}#{{service.slug}}">{{service.name}}</a><br />
+              <span class="govuk-visually-hidden">
+                Labels:
+              </span>
+              {{- labels(service, {add_classes: 'app-tag'}) -}}
+            </li>
           {% endfor %}
         </ul>
       {%- endif -%}
