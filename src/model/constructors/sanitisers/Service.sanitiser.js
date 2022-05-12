@@ -12,6 +12,10 @@ function setDefaults (validParams) {
   if (validParams.critical === undefined) sanitisedParams.critical = 'false'
   if (validParams.sunsetting === undefined) sanitisedParams.sunsetting = 'false'
   if (validParams.plans === undefined) sanitisedParams.plans = 'true'
+  if (validParams.sunsetDate === undefined) {
+    if (validParams.sunsetting === 'true') sanitisedParams.sunsetDate = 'unknown'
+    if (validParams.sunsetting === 'false') sanitisedParams.sunsetDate = 'n/a'
+  }
   sanitisedParams.slug = slugify(sanitisedParams.name, { lower: true })
   return sanitisedParams
 }

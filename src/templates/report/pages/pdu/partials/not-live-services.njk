@@ -6,7 +6,7 @@
   <div class="app-inset-text">
     {%- for service in notLiveServices -%}
       <div class="govuk-!-margin-bottom-9">
-        <h3 class="govuk-heading-m">
+        <h3 class="govuk-heading-m" id="{{service.slug}}">
           {{service.name}}
           {%- if service.alias.length > 0 -%}
             <span class="govuk-visually-hidden"> also known as </span>

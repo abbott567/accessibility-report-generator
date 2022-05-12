@@ -10,7 +10,7 @@
   {%- else -%}
     {%- for service in liveServices -%}
       <div class="govuk-!-margin-bottom-9">
-        <h3 class="govuk-heading-m">
+        <h3 class="govuk-heading-m" id="{{service.slug}}">
           {{service.name}}
           {%- if service.alias.length > 0 -%}
             <span class="govuk-visually-hidden"> also known as </span>
@@ -30,6 +30,14 @@
           {{- service.notes -}}
         </p>
 
+        {%- if service.sunsetting === 'true' and service.sunsetDate === 'unknown' -%}
+          {% set decomissionStatement = ' It is not known when it will be decomissioned.' %}
+        {%- elif service.sunsetting === 'true' and service.sunsetDate !== 'unknown' -%}
+            {% set decomissionStatement = ' It should be decomissioned by ' + service.sunsetDate + '.' %}
+        {%- else -%}
+            {% set decomissionStatement = '' %}
+        {% endif %}
+
         {%- if service.plans === 'true' -%}
           {{ progressBar({
             heading: 'Progress',
@@ -40,12 +48,12 @@
         {%- else -%}
           {%- if service.legacy === 'true' -%}
             {{ govukWarningText({
-              text: "This is a legacy service and cannot be made compliant.",
+              text: "This is a legacy service and cannot be made compliant." + decomissionStatement,
               iconFallbackText: "Important"
             }) }}
           {%- else -%}
             {{ govukWarningText({
-              text: "This service has no plans for compliance.",
+              text: "This service has no plans for compliance."  + decomissionStatement,
               iconFallbackText: "Important"
             }) }}
           {%- endif -%}

@@ -62,6 +62,7 @@ function sunsetting (params) {
     const valid = ['true', 'false']
     if (!valid.includes(slug)) throw Error(`params.sunsetting not valid when constructing Service: ${JSON.stringify(params)}`)
   }
+  if (params.sunsetDate) checkDate(params.sunsetDate, params.name)
 }
 
 function plans (params) {

@@ -21,6 +21,7 @@ class Service {
   risk
   critical
   sunsetting
+  sunsetDate
   plans
   legacy
   notes
@@ -36,6 +37,7 @@ class Service {
     this.risk = sanitisedParams.risk
     this.critical = sanitisedParams.critical
     this.sunsetting = sanitisedParams.sunsetting
+    this.sunsetDate = sanitisedParams.sunsetDate
     this.legacy = sanitisedParams.legacy
     this.plans = sanitisedParams.plans
     this.name = sanitisedParams.name
