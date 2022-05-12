@@ -1,0 +1,49 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = 'Legacy services' -%}
+{%- set current_url = '/filters/legacy-services' %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Legacy services
+</h1>
+
+<p class="govuk-body">
+  Legacy services are old systems which are maintained on old technology stacks. 
+  These are unlikely to ever achive full compliance with WCAG 2.1 AA unless they 
+  are rebuilt using modern technologies.  
+</p>
+
+<p class="govuk-body">
+  There are {{Service.filterByLegacy('true').length}} legacy services.
+</p>
+
+{%- for directorate in Directorate.all -%}
+  <div class="app-inset-text govuk-!-margin-top-6">
+    <h2 class="govuk-heading-m">{{directorate.name}}</h2>
+    {%- for pdu in directorate.getPDUs() -%}
+      <h3 class="govuk-heading-s">{{pdu.name}}</h3>
+      {%- set services = pdu.getServices({ legacy: 'true' }) -%}
+      {%- if services.length === 0 -%}
+        <p class="govuk-body">
+          No services marked as legacy.
+        </p>
+      {%- else -%}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for service in services %}
+            <li class="govuk-!-margin-bottom-5">
+            {{service.name}}<br />
+            <span class="govuk-visually-hidden">
+              Labels:
+            </span>
+            {{- labels(service, {add_classes: 'app-tag'}) -}}
+          </li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+
+{%- endblock -%}

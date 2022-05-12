@@ -38,10 +38,17 @@
             stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
           }) }}
         {%- else -%}
-          {{ govukWarningText({
-            text: "This service has no plans for compliance.",
-            iconFallbackText: "Important"
-          }) }}
+          {%- if service.legacy === 'true' -%}
+            {{ govukWarningText({
+              text: "This is a legacy service and cannot be made compliant.",
+              iconFallbackText: "Important"
+            }) }}
+          {%- else -%}
+            {{ govukWarningText({
+              text: "This service has no plans for compliance.",
+              iconFallbackText: "Important"
+            }) }}
+          {%- endif -%}
         {%- endif -%}
 
         <dl class="govuk-summary-list">

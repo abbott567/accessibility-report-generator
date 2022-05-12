@@ -4,8 +4,10 @@
     {%- for service in lowRiskServices -%}
       {%- if service.plans === 'true'-%}
         <li>{{service.name}}</li>
+      {%- elif service.legacy === 'true' -%}
+        <li class="disabled">{{service.name}} <span class="i">- (legacy)</span></li>
       {%- else -%}
-        <li class="disabled">{{service.name}} (no accessibility work scheduled)</li>
+        <li class="disabled">{{service.name}} <span class="i">- (no accessibility work scheduled)</span></li>
       {%- endif -%}
     {%- endfor -%}
   </ul>

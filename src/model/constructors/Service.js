@@ -22,6 +22,7 @@ class Service {
   critical
   sunsetting
   plans
+  legacy
   notes
   evidence = {}
   stats = {
@@ -35,6 +36,7 @@ class Service {
     this.risk = sanitisedParams.risk
     this.critical = sanitisedParams.critical
     this.sunsetting = sanitisedParams.sunsetting
+    this.legacy = sanitisedParams.legacy
     this.plans = sanitisedParams.plans
     this.name = sanitisedParams.name
     this.slug = sanitisedParams.slug
@@ -62,6 +64,11 @@ class Service {
 
   static filterByRisk (risk) {
     const services = Service.all.filter(x => x.risk === risk)
+    return services
+  }
+
+  static filterByLegacy (legacy) {
+    const services = Service.all.filter(x => x.legacy === legacy)
     return services
   }
 

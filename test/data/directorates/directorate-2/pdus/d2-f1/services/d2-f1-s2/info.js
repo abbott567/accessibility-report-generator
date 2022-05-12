@@ -7,6 +7,7 @@ module.exports = {
   plans: 'true',
   critical: 'false',
   risk: 'unknown',
+  legacy: 'false',
   evidence: {
     wcag: {
       status: 'not done',

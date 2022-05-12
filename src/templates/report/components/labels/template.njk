@@ -1,29 +1,29 @@
 {%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
 {%- if service.risk === 'very-high' -%}
-  {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'app-tag--very-high-risk' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'app-tag app-tag--very-high-risk' -%}
 {%- elif service.risk === 'high' -%}
-  {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'app-tag--high-risk' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'app-tag app-tag--high-risk' -%}
 {%- elif service.risk === 'medium' -%}
-  {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'app-tag--medium-risk' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'app-tag app-tag--medium-risk' -%}
 {%- elif service.risk === 'low' -%}
-  {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'app-tag--low-risk' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'app-tag app-tag--low-risk' -%}
 {%- elif service.risk === 'compliant' -%}
   {%- set risk_tag_text = service.risk -%}
-  {%- set risk_tag_class = 'app-tag--compliant' -%}
+  {%- set risk_tag_class = 'app-tag app-tag--compliant' -%}
 {%- else -%}
-  {%- set risk_tag_text = service.risk + ' risk' -%}
-  {%- set risk_tag_class = 'govuk-tag--grey' -%}
+  {%- set risk_tag_text = service.risk -%}
+  {%- set risk_tag_class = 'app-tag govuk-tag--grey' -%}
 {%- endif -%}
 
 {%- if service.status === 'live' -%}
-  {%- set status_tag = 'govuk-tag--turquoise' -%}
+  {%- set status_tag = 'app-tag govuk-tag--turquoise' -%}
 {%- else -%}
-  {%- set status_tag = 'govuk-tag--grey' -%}
+  {%- set status_tag = 'app-tag govuk-tag--grey' -%}
 {%- endif -%}
 
 <ul class="app-label-list">
@@ -37,7 +37,7 @@
     <li>
       {{- govukTag({
         text: risk_tag_text,
-        classes: risk_tag_class + (' ' + params.add_classes if params.add_classes)
+        classes: 'app-tag ' + risk_tag_class + (' ' + params.add_classes if params.add_classes)
       }) -}}
     </li>
   {%- endif -%}
@@ -47,7 +47,7 @@
     {%- endset -%}
     {{- govukTag({
       text: txthtml|safe,
-      classes: (params.add_classes if params.add_classes)
+      classes: 'app-tag ' + (params.add_classes if params.add_classes)
     }) -}}
   </li>
   {%- if service.critical === 'true' or service.sunsetting === 'true' -%}
@@ -55,7 +55,7 @@
       <li>
         {{ govukTag({
           text: 'Critical',
-          classes: 'govuk-tag--red' + (' ' + params.add_classes if params.add_classes)
+          classes: 'app-tag govuk-tag--red' + (' ' + params.add_classes if params.add_classes)
         }) }}
       </li>
     {%- endif -%}
@@ -64,7 +64,16 @@
       <li>
         {{ govukTag({
           text: 'Sunsetting',
-          classes: 'govuk-tag--pink' + (' ' + params.add_classes if params.add_classes)
+          classes: 'app-tag govuk-tag--pink' + (' ' + params.add_classes if params.add_classes)
+        }) }}
+      </li>
+    {%- endif -%}
+
+    {%- if service.legacy === 'true' -%}
+      <li>
+        {{ govukTag({
+          text: 'Legacy',
+          classes: 'app-tag govuk-tag--purple' + (' ' + params.add_classes if params.add_classes)
         }) }}
       </li>
     {%- endif -%}

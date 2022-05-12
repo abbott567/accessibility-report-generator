@@ -3,10 +3,11 @@ module.exports = {
   alias: 'D1F1S1',
   status: 'live',
   type: 'citizen',
-  sunsetting: 'false',
-  plans: 'true',
   critical: 'false',
   risk: 'unknown',
+  sunsetting: 'false',
+  plans: 'true',
+  legacy: 'false',
   evidence: {
     wcag: {
       status: 'not done',

@@ -32,6 +32,7 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     { header: '(Total) - Low risk', key: 'all_risk_low', width: 20 },
     { header: '(Total) - Unknown risk', key: 'all_risk_unknown', width: 20 },
     { header: '(Total) - No plans for compliance', key: 'all_no_plans', width: 20 },
+    { header: '(Total) - Legacy systems', key: 'all_legacy', width: 20 },
     { header: '(Citizen) - Number of services', key: 'citizen_total', width: 20 },
     { header: '(Citizen) - Live', key: 'citizen_live', width: 20 },
     { header: '(Citizen) - Live and Compliant', key: 'citizen_live_compliant', width: 20 },
@@ -46,6 +47,7 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     { header: '(Citizen) - Low risk', key: 'citizen_risk_low', width: 20 },
     { header: '(Citizen) - Unknown risk', key: 'citizen_risk_unknown', width: 20 },
     { header: '(Citizen) - No plans for compliance', key: 'citizen_no_plans', width: 20 },
+    { header: '(Citizen) - Legacy systems', key: 'citizen_legacy', width: 20 },
     { header: '(Staff) - Number of services', key: 'staff_total', width: 20 },
     { header: '(Staff) - Live', key: 'staff_live', width: 20 },
     { header: '(Staff) - Live and Compliant', key: 'staff_live_compliant', width: 20 },
@@ -59,7 +61,8 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     { header: '(Staff) - Medium risk', key: 'staff_risk_medium', width: 20 },
     { header: '(Staff) - Low risk', key: 'staff_risk_low', width: 20 },
     { header: '(Staff) - Unknown risk', key: 'staff_risk_unknown', width: 20 },
-    { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 }
+    { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 },
+    { header: '(Staff) - Legacy systems', key: 'staff_legacy', width: 20 }
   ]
   wsOverview.addRow({
     org_name: org.name,
@@ -83,6 +86,7 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     all_risk_low: org.stats.services.all.risk_low,
     all_risk_unknown: org.stats.services.all.risk_unknown,
     all_no_plans: org.stats.services.all.no_plans,
+    all_legacy: org.stats.services.all.legacy,
     citizen_total: org.stats.services.citizen.total,
     citizen_live: org.stats.services.citizen.live,
     citizen_live_compliant: org.stats.services.citizen.live_compliant,
@@ -97,6 +101,7 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     citizen_risk_low: org.stats.services.citizen.risk_low,
     citizen_risk_unknown: org.stats.services.citizen.risk_unknown,
     citizen_no_plans: org.stats.services.citizen.no_plans,
+    citizen_legacy: org.stats.services.citizen.legacy,
     staff_total: org.stats.services.staff.total,
     staff_live: org.stats.services.staff.live,
     staff_live_compliant: org.stats.services.staff.live_compliant,
@@ -110,7 +115,8 @@ function generateOverviewWorksheet (workbook, Org, tabName) {
     staff_risk_medium: org.stats.services.staff.risk_medium,
     staff_risk_low: org.stats.services.staff.risk_low,
     staff_risk_unknown: org.stats.services.staff.risk_unknown,
-    staff_no_plans: org.stats.services.staff.no_plans
+    staff_no_plans: org.stats.services.staff.no_plans,
+    staff_legacy: org.stats.services.staff.legacy
   })
   wsOverview.getRow(1).font = { size: 12, bold: true }
   console.log('Excel:'.yellow, 'Overview saved: '.cyan, tabName)

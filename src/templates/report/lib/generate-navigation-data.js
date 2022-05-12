@@ -81,6 +81,10 @@ function generateNavigationData () {
     name: 'No plans for compliance',
     link: '/filters/no-plans-for-compliance'
   })
+  nav.filters.push({
+    name: 'Legacy services',
+    link: '/filters/legacy-services'
+  })
 
   // Support links
   nav.support_links.push({

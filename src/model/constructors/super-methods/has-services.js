@@ -36,6 +36,7 @@ class SuperMethodHasServices {
         if (nonCompliantFilter) return this.#services.filter(x => x.status === filter.status && x.risk !== 'compliant')
         else return this.#services.filter(x => x.status === filter.status && x.risk === filter.risk)
       }
+      if (filter.type && filter.legacy) return this.#services.filter(x => x.type === filter.type && x.legacy === filter.legacy)
       if (filter.type && filter.critical) return this.#services.filter(x => x.type === filter.type && x.critical === filter.critical)
       if (filter.type && filter.sunsetting) return this.#services.filter(x => x.type === filter.type && x.sunsetting === filter.sunsetting)
       if (filter.type && filter.plans) return this.#services.filter(x => x.type === filter.type && x.plans === filter.plans)
@@ -45,6 +46,7 @@ class SuperMethodHasServices {
       if (filter.critical) return this.#services.filter(x => x.critical === filter.critical)
       if (filter.sunsetting) return this.#services.filter(x => x.sunsetting === filter.sunsetting)
       if (filter.plans) return this.#services.filter(x => x.plans === filter.plans)
+      if (filter.legacy) return this.#services.filter(x => x.legacy === filter.legacy)
       if (filter.risk) {
         const nonCompliantFilter = (/!compliant/).test(filter.risk)
         if (nonCompliantFilter) return this.#services.filter(x => x.risk !== 'compliant')
@@ -79,6 +81,7 @@ class SuperMethodHasServices {
     this.stats.services.all.plans = this.getNumberOfServices({ plans: 'true' })
     this.stats.services.all.no_plans = this.getNumberOfServices({ plans: 'false' })
     this.stats.services.all.live_no_plans = this.getNumberOfServices({ plans: 'false', status: 'live' })
+    this.stats.services.all.legacy = this.getNumberOfServices({ legacy: 'true' })
 
     this.stats.services.citizen.total = this.getNumberOfServices({ type: 'citizen' })
     this.stats.services.citizen.live = this.getNumberOfServices({ type: 'citizen', status: 'live' })
@@ -99,6 +102,7 @@ class SuperMethodHasServices {
     this.stats.services.citizen.plans = this.getNumberOfServices({ type: 'citizen', plans: 'true' })
     this.stats.services.citizen.no_plans = this.getNumberOfServices({ type: 'citizen', plans: 'false' })
     this.stats.services.citizen.live_no_plans = this.getNumberOfServices({ type: 'citizen', plans: 'false', status: 'live' })
+    this.stats.services.citizen.legacy = this.getNumberOfServices({ type: 'citizen', legacy: 'true' })
 
     this.stats.services.staff.total = this.getNumberOfServices({ type: 'staff' })
     this.stats.services.staff.live = this.getNumberOfServices({ type: 'staff', status: 'live' })
@@ -119,10 +123,12 @@ class SuperMethodHasServices {
     this.stats.services.staff.plans = this.getNumberOfServices({ type: 'staff', plans: 'true' })
     this.stats.services.staff.no_plans = this.getNumberOfServices({ type: 'staff', plans: 'false' })
     this.stats.services.staff.live_no_plans = this.getNumberOfServices({ type: 'staff', plans: 'false', status: 'live' })
+    this.stats.services.staff.legacy = this.getNumberOfServices({ type: 'staff', legacy: 'true' })
 
     this.stats.rates.true_compliance.total = percent(this.stats.services.all.live_compliant).of(this.stats.services.all.live)
     this.stats.rates.true_compliance.citizen = percent(this.stats.services.citizen.live_compliant).of(this.stats.services.citizen.live)
     this.stats.rates.true_compliance.staff = percent(this.stats.services.staff.live_compliant).of(this.stats.services.staff.live)
+
     this.stats.rates.adjusted_compliance.total = percent(this.stats.services.all.live_compliant).of(this.stats.services.all.live - this.stats.services.all.live_no_plans)
     this.stats.rates.adjusted_compliance.citizen = percent(this.stats.services.citizen.live_compliant).of(this.stats.services.citizen.live - this.stats.services.citizen.live_no_plans)
     this.stats.rates.adjusted_compliance.staff = percent(this.stats.services.staff.live_compliant).of(this.stats.services.staff.live - this.stats.services.staff.live_no_plans)

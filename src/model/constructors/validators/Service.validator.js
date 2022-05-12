@@ -12,6 +12,7 @@ function params (params) {
   critical(params)
   sunsetting(params)
   plans(params)
+  legacy(params)
   risk(params)
   evidence(params)
   notes(params)
@@ -69,6 +70,16 @@ function plans (params) {
     const slug = slugify(params.plans, { lower: true })
     const valid = ['true', 'false']
     if (!valid.includes(slug)) throw Error(`params.plans not valid when constructing Service: ${JSON.stringify(params)}`)
+  }
+}
+
+function legacy (params) {
+  if (params.legacy === undefined) throw Error(`params.legacy not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.legacy) {
+    const slug = slugify(params.legacy, { lower: true })
+    const valid = ['true', 'false']
+    if (!valid.includes(slug)) throw Error(`params.legacy not valid when constructing Service: ${JSON.stringify(params)}`)
+    if (params.legacy === 'true' && params.plans === 'true') throw Error(`Legacy services can't be made compliant: ${JSON.stringify(params)}`)
   }
 }
 

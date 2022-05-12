@@ -1,4 +1,4 @@
-<style>html{font-family:arial, sans-serif;}</style>
+<style>html{font-family:arial, sans-serif;}.i{font-style:italic;}</style>
 
 <h1>Accessibility Update</h1>
 {% include './partials/intro.njk' %}
@@ -28,12 +28,12 @@
 <h2>Low risk services</h2>
 {% include './partials/services-low-risk.njk' %}
 
-<h2>Services where no accessibility work is scheduled</h2>
+<h2>Services which are unlikely to be compliant</h2>
 <p>
-  These are the sunsetting services which have been descoped in the adjusted 
-  compliance stats.
+  These are the sunsetting or legacy services which have been descoped in the 
+  adjusted compliance stats.
 </p>
-{% include './partials/services-sunsetting.njk' %}
+{% include './partials/services-no-plans.njk' %}
 
 <hr>
 
@@ -86,4 +86,12 @@
   It is important to note that services removed from the adjusted compliance 
   statistics are still at risk from legal challenge. So, adjusted compliance can 
   become a vanity metric if it is not properly managed.
+</p>
+
+<h3>No accessibility work scheduled vs Legacy</h3>
+<p>
+  We've added 'legacy' to the report to differentiate between systems which are 
+  being worked on but cannot meet all of the criteria in WCAG 2.1, and those 
+  systems where the risks have been accepted and there is no accessibility work 
+  ongoing.
 </p>

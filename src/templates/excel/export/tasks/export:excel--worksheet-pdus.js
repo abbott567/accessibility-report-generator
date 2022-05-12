@@ -34,6 +34,7 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
     { header: '(Total) - Low risk', key: 'all_risk_low', width: 20 },
     { header: '(Total) - Unknown risk', key: 'all_risk_unknown', width: 20 },
     { header: '(Total) - No plans for compliance', key: 'all_no_plans', width: 20 },
+    { header: '(Total) - Legacy services', key: 'all_legacy', width: 20 },
     { header: '(Citizen) - Number of services', key: 'citizen_total', width: 20 },
     { header: '(Citizen) - Live', key: 'citizen_live', width: 20 },
     { header: '(Citizen) - Live and Compliant', key: 'citizen_live_compliant', width: 20 },
@@ -48,6 +49,7 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
     { header: '(Citizen) - Low risk', key: 'citizen_risk_low', width: 20 },
     { header: '(Citizen) - Unknown risk', key: 'citizen_risk_unknown', width: 20 },
     { header: '(Citizen) - No plans for compliance', key: 'citizen_no_plans', width: 20 },
+    { header: '(Citizen) - Legacy services', key: 'citizen_legacy', width: 20 },
     { header: '(Staff) - Number of services', key: 'staff_total', width: 20 },
     { header: '(Staff) - Live', key: 'staff_live', width: 20 },
     { header: '(Staff) - Live and Compliant', key: 'staff_live_compliant', width: 20 },
@@ -61,7 +63,8 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
     { header: '(Staff) - Medium risk', key: 'staff_risk_medium', width: 20 },
     { header: '(Staff) - Low risk', key: 'staff_risk_low', width: 20 },
     { header: '(Staff) - Unknown risk', key: 'staff_risk_unknown', width: 20 },
-    { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 }
+    { header: '(Staff) - No plans for compliance', key: 'staff_no_plans', width: 20 },
+    { header: '(Staff) - Legacy services', key: 'staff_legacy', width: 20 }
   ]
   pdus.forEach(pdu => {
     wsOverview.addRow({
@@ -88,6 +91,7 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
       all_risk_low: pdu.stats.services.all.risk_low,
       all_risk_unknown: pdu.stats.services.all.risk_unknown,
       all_no_plans: pdu.stats.services.all.no_plans,
+      all_legacy: pdu.stats.services.all.legacy,
       citizen_total: pdu.stats.services.citizen.total,
       citizen_live: pdu.stats.services.citizen.live,
       citizen_live_compliant: pdu.stats.services.citizen.live_compliant,
@@ -102,6 +106,7 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
       citizen_risk_low: pdu.stats.services.citizen.risk_low,
       citizen_risk_unknown: pdu.stats.services.citizen.risk_unknown,
       citizen_no_plans: pdu.stats.services.citizen.no_plans,
+      citizen_legacy: pdu.stats.services.citizen.legacy,
       staff_total: pdu.stats.services.staff.total,
       staff_live: pdu.stats.services.staff.live,
       staff_live_compliant: pdu.stats.services.staff.live_compliant,
@@ -115,7 +120,8 @@ function generatePDUsWorksheet (workbook, PDU, tabName) {
       staff_risk_medium: pdu.stats.services.staff.risk_medium,
       staff_risk_low: pdu.stats.services.staff.risk_low,
       staff_risk_unknown: pdu.stats.services.staff.risk_unknown,
-      staff_no_plans: pdu.stats.services.staff.no_plans
+      staff_no_plans: pdu.stats.services.staff.no_plans,
+      staff_legacy: pdu.stats.services.staff.legacy
     })
   })
   wsOverview.getRow(1).font = { size: 12, bold: true }

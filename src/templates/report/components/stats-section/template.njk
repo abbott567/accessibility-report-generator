@@ -8,9 +8,9 @@
     <span class="govuk-visually-hidden"> {{params.heading_hidden}}</span>
   {%- endif -%}
 </h{{params.heading_level}}>
-{%- if params.stats_type === 'adjusted' -%}
+{%- if params.stats_type === 'adjusted_compliance' -%}
   <p class="govuk-body">
-    {{params.service_name}} have plans to make {{stats.total_live - stats.total_descoped}} of {{stats.total_live}} services compliant.
+    {{params.service_name}} have plans to make {{params.stats.services.all.live - params.stats.services.all.live_no_plans}} of {{params.stats.services.all.live}} services compliant.
   </p>
 {%- endif -%}
 
