@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diff from {{prevMonth}} to {{todayDate}}</title>
+    <style>
+      html { font-family:arial, sans-serif; font-size: 1.2rem; }
+      .green { color:green; }
+      .red { color:red; }
+      .changes { margin-left: 0; overflow-x: scroll; white-space: pre-line; background: #f5f5f5; padding: 20px; }
+      main { width: 100%; max-width: 700px; margin: auto; overflow: hidden; padding: 20px; }
+      *:focus { border: 3px solid #0b0c0c; outline: 3px solid #fd0; }
+      </style>
+  </head>
+  <body>
+    <main>
+      <h1>Diff from {{prevMonth}} to {{todayDate}}</h1>
+      {% for key, value in data.todayData %}
+        {% if key === 'info'%}
+
+          {% set difference = info | difference(data.prevData, data.todayData) %}
+
+          {% for change in difference%}
+            <hr aria-hidden="true">
+
+            {% if change.kind === 'E' %}
+              <strong>Edited:</strong><br />
+              {%- for part in change.path -%}
+                {%- if loop.last -%}
+                  {{part}}
+                {%- else -%}
+                  {{part}}/
+                {%- endif -%}
+              {%- endfor -%}
+              <pre class="changes" tabindex="0">
+                {{change.path|last}}: <span class="red">{{change.lhs}}</span><br />
+                {{change.path|last}}: <span class="green">{{change.rhs}}</span>
+              </pre>
+            {% endif %}
+
+            {% if change.kind === 'N' %}
+              <strong>Added:</strong><br />
+              {%- for part in change.path -%}
+                {%- if loop.last -%}
+                  {{part}}
+                {%- else -%}
+                  {{part}}/
+                {%- endif -%}
+              {%- endfor -%}
+              <pre class="changes" tabindex="0">
+                {{change.path|last}}: <span class="green">{{change.rhs|dump}}</span>
+              </pre>
+            {% endif %}
+
+            {% if change.kind === 'D' %}
+              <strong>Removed: </strong><br />
+              {%- for part in change.path -%}
+                {%- if loop.last -%}
+                  {{part}}
+                {%- else -%}
+                  {{part}}/
+                {%- endif -%}
+              {%- endfor -%}
+              <pre class="changes" tabindex="0">
+                {{change.path|last}}: <span class="red">{{change.lhs|dump}}</span>
+              </pre>
+            {% endif %}
+
+            {% if change.kind === 'A' %}
+              <strong>Array changed: </strong><br />
+              {%- for part in change.path -%}
+                {%- if loop.last -%}
+                  {{part}}
+                {%- else -%}
+                  {{part}}/
+                {%- endif -%}
+              {%- endfor -%}
+
+              {% if change.item.kind === 'E' %}
+                <pre class="changes" tabindex="0">
+                  <span class="red">{{change.item.lhs|dump}}</span>
+                  <span class="green">{{change.item.rhs|dump}}</span>
+                </pre>
+              {% endif %}
+
+              {% if change.item.kind === 'N' %}
+                <pre class="changes" tabindex="0">
+                  <span class="green">{{change.item.rhs|dump}}</span>
+                </pre>
+              {% endif %}
+
+              {% if change.item.kind === 'D' %}
+                <pre class="changes" tabindex="0">
+                  <span class="red">{{change.item.lhs|dump}}</span>
+                </pre>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </main>
+  </body>
+</html>
+
+
+
