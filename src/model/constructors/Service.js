@@ -129,12 +129,17 @@ class Service {
   }
 
   #generateStats () {
+    if (this.evidence.wcag.status === 'basic') this.stats.progress += 15
     if (this.evidence.wcag.status === 'passed') this.stats.progress += 20
-    if (this.evidence.wcag.status === 'basic') this.stats.progress += 10
+    if (this.evidence.wcag.status === 'failed') this.stats.progress += 10
     if (this.evidence.screen_reader.status === 'passed') this.stats.progress += 20
+    if (this.evidence.screen_reader.status === 'failed') this.stats.progress += 10
     if (this.evidence.screen_magnifier.status === 'passed') this.stats.progress += 20
+    if (this.evidence.screen_magnifier.status === 'failed') this.stats.progress += 10
     if (this.evidence.voice_controller.status === 'passed') this.stats.progress += 20
+    if (this.evidence.voice_controller.status === 'failed') this.stats.progress += 10
     if (this.evidence.statement.status === 'done') this.stats.progress += 20
+    if (this.evidence.statement.status === 'failed') this.stats.progress += 10
     if (this.status === 'live') {
       if (this.stats.progress === 100) this.risk = 'compliant'
     }
