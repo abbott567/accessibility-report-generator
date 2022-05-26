@@ -22,6 +22,7 @@ async function buildFilterPages (slug) {
   buildFilterPage('sunsetting-services')
   buildFilterPage('critical-services')
   buildFilterPage('no-plans-for-compliance')
+  buildFilterPage('legacy-services')
 }
 
 module.exports = buildFilterPages
