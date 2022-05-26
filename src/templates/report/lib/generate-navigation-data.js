@@ -33,8 +33,10 @@ function generateNavigationData () {
 
   // Move 'other' to end
   const other = nav.main.find(x => x.name === 'Other')
-  nav.main.splice(nav.main.indexOf(other), 1)
-  nav.main.push(other)
+  if (other) {
+    nav.main.splice(nav.main.indexOf(other), 1)
+    nav.main.push(other)
+  }
 
   // Filters
   nav.filters.push({

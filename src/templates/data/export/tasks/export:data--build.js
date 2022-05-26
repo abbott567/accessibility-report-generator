@@ -27,10 +27,14 @@ const saveHTML = require('../../../../utils/save-html')
 async function buildDiff (todayData) {
   const dir = `output/data/${todayDate}`
   const prevMonth = await getPreviousMonth(todayDate)
-  const prevData = require(`../../../../../output/data/${prevMonth}/${prevMonth}-data.json`)
-  const html = await getDiffHTML(prevData, todayData, datefns.format(datefns.parseISO(prevMonth), 'd MMMM yyyy'))
-  await saveHTML(html, dir, `${todayDate}-diff`)
-  console.log('Data:'.red, 'Diff saved'.cyan)
+  if (prevMonth) {
+    const prevData = require(`../../../../../output/data/${prevMonth}/${prevMonth}-data.json`)
+    const html = await getDiffHTML(prevData, todayData, datefns.format(datefns.parseISO(prevMonth), 'd MMMM yyyy'))
+    await saveHTML(html, dir, `${todayDate}-diff`)
+    console.log('Data:'.red, 'Diff saved'.cyan)
+  } else {
+    console.log('Data:'.red, 'Diff not saved: '.cyan, 'No previous month to Diff')
+  }
 }
 
 async function buildData () {
