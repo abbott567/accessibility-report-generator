@@ -7,21 +7,27 @@ module.exports = {
   critical: 'true',
   sunsetting: 'false',
   plans: 'true',
+  legacy: 'false',
   evidence: {
     wcag: {
-      status: 'failed'
+      status: 'failed',
+      date: 'March 2022'
     },
     screen_reader: {
-      status: 'failed'
+      status: 'failed',
+      date: 'March 2022'
     },
     voice_controller: {
-      status: 'failed'
+      status: 'failed',
+      date: 'March 2022'
     },
     screen_magnifier: {
-      status: 'passed'
+      status: 'passed',
+      date: 'March 2022'
     },
     statement: {
-      status: 'done'
+      status: 'done',
+      date: 'March 2022'
     }
   },
   notes: 'Tagged as high risk because...'

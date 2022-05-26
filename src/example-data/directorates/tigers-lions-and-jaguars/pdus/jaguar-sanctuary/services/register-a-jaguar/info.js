@@ -7,21 +7,27 @@ module.exports = {
   risk: 'medium',
   critical: 'false',
   plans: 'true',
+  legacy: 'false',
   evidence: {
     wcag: {
-      status: 'passed'
+      status: 'passed',
+      date: 'February 2022'
     },
     screen_reader: {
-      status: 'not done'
+      status: 'not done',
+      date: 'n/a'
     },
     voice_controller: {
-      status: 'failed'
+      status: 'failed',
+      date: 'January 2022'
     },
     screen_magnifier: {
-      status: 'not done'
+      status: 'not done',
+      date: 'n/a'
     },
     statement: {
-      status: 'done'
+      status: 'done',
+      date: 'n/a'
     },
     notes: 'Tagged as medium risk because...'
   }

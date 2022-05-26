@@ -7,21 +7,27 @@ module.exports = {
   critical: 'false',
   sunsetting: 'false',
   plans: 'true',
+  legacy: 'false',
   evidence: {
     wcag: {
-      status: 'passed'
+      status: 'passed',
+      date: 'March 2022'
     },
     screen_reader: {
-      status: 'passed'
+      status: 'passed',
+      date: 'March 2022'
     },
     voice_controller: {
-      status: 'passed'
+      status: 'passed',
+      date: 'March 2022'
     },
     screen_magnifier: {
-      status: 'passed'
+      status: 'passed',
+      date: 'March 2022'
     },
     statement: {
-      status: 'done'
+      status: 'done',
+      date: 'March 2022'
     }
   },
   notes: 'Service is compliant.'
