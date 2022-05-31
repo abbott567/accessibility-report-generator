@@ -7,7 +7,7 @@ html { font-family: $govuk-font-family }
 
 // App components
 @import 'colours';
-@import '../../components/all';
+@import '../../components/all.scss';
 
 .app-inset-text {
   border-left: 5px solid $govuk-border-colour;

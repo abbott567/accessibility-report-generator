@@ -1,15 +1,12 @@
-const locals = require('../../lib/build-locals')
-
-const Directorate = require('../../../../model/constructors/Directorate')
-
-const nunjucks = require('../../lib/nunjucks')
+const path = require('path')
+const buildLocals = require(path.resolve('src', 'templates', 'report', 'lib', 'build-locals'))
+const nunjucks = require(path.resolve('src', 'templates', 'report', 'lib', 'nunjucks'))
 const minify = require('html-minifier').minify
 
-function getDirectorateHTML (slug) {
-  const directorate = Directorate.findBySlug(slug)
+function getDirectorateHTML (directorate) {
+  const locals = buildLocals()
   locals.page = 'Directorate'
   locals.directorate = directorate
-
   const template = nunjucks.render('pages/directorate/template.njk', locals)
   const directorateHTML = minify(template, { collapseWhitespace: true })
 

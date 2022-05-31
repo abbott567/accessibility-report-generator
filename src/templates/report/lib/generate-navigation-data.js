@@ -1,4 +1,5 @@
-const Directorate = require('../../../model/constructors/Directorate')
+const path = require('path')
+const Directorate = require(path.resolve('src', 'model', 'constructors', 'Directorate'))
 
 function generateNavigationData () {
   const nav = {

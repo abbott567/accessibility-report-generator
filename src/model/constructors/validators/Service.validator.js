@@ -1,5 +1,6 @@
+const path = require('path')
 const slugify = require('slugify')
-const datefns = require('date-fns')
+const { checkDate } = require(path.resolve('src', 'utils', 'check-date'))
 
 function params (params) {
   if (params === undefined) throw Error('params not provided for Service constructor')
@@ -24,78 +25,66 @@ function name (params) {
 }
 
 function org (params) {
-  if (params.orgID === undefined) throw Error(`params.orgID not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.orgID === undefined) throw Error(`params.orgID not found when constructing Service: ${params.name}`)
 }
 function directorate (params) {
-  if (params.directorateID === undefined) throw Error(`params.directorateID not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.directorateID === undefined) throw Error(`params.directorateID not found when constructing Service: ${params.name}`)
 }
 function PDU (params) {
-  if (params.PDUID === undefined) throw Error(`params.PDUID not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.PDUID === undefined) throw Error(`params.PDUID not found when constructing Service: ${params.name}`)
 }
 
 function status (params) {
-  if (params.status === undefined) throw Error(`params.status not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.status) {
-    const slug = slugify(params.status, { lower: true })
-    const valid = ['live', 'not-live']
-    if (!valid.includes(slug)) throw Error(`params.status not valid when constructing Service: ${JSON.stringify(params)}`)
-  }
+  if (params.status === undefined) throw Error(`params.status not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.status, { lower: true })
+  const valid = ['live', 'not-live']
+  if (!valid.includes(slug)) throw Error(`params.status not valid when constructing Service: ${params.name}`)
 }
 
 function type (params) {
-  if (params.type === undefined) throw Error(`params.type not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.type === undefined) throw Error(`params.type not found when constructing Service: ${params.name}`)
 }
 
 function critical (params) {
-  if (params.critical === undefined) throw Error(`params.critical not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.critical) {
-    const slug = slugify(params.critical, { lower: true })
-    const valid = ['true', 'false']
-    if (!valid.includes(slug)) throw Error(`params.critical not valid when constructing Service: ${JSON.stringify(params)}`)
-  }
+  if (params.critical === undefined) throw Error(`params.critical not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.critical, { lower: true })
+  const valid = ['true', 'false']
+  if (!valid.includes(slug)) throw Error(`params.critical not valid when constructing Service: ${params.name}`)
 }
 
 function sunsetting (params) {
-  if (params.sunsetting === undefined) throw Error(`params.sunsetting not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.sunsetting) {
-    const slug = slugify(params.sunsetting, { lower: true })
-    const valid = ['true', 'false']
-    if (!valid.includes(slug)) throw Error(`params.sunsetting not valid when constructing Service: ${JSON.stringify(params)}`)
-  }
+  if (params.sunsetting === undefined) throw Error(`params.sunsetting not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.sunsetting, { lower: true })
+  const valid = ['true', 'false']
+  if (!valid.includes(slug)) throw Error(`params.sunsetting not valid when constructing Service: ${params.name}`)
   if (params.sunsetDate) checkDate(params.sunsetDate, params.name)
 }
 
 function plans (params) {
-  if (params.plans === undefined) throw Error(`params.plans not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.plans) {
-    const slug = slugify(params.plans, { lower: true })
-    const valid = ['true', 'false']
-    if (!valid.includes(slug)) throw Error(`params.plans not valid when constructing Service: ${JSON.stringify(params)}`)
-  }
+  if (params.plans === undefined) throw Error(`params.plans not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.plans, { lower: true })
+  const valid = ['true', 'false']
+  if (!valid.includes(slug)) throw Error(`params.plans not valid when constructing Service: ${params.name}`)
 }
 
 function legacy (params) {
-  if (params.legacy === undefined) throw Error(`params.legacy not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.legacy) {
-    const slug = slugify(params.legacy, { lower: true })
-    const valid = ['true', 'false']
-    if (!valid.includes(slug)) throw Error(`params.legacy not valid when constructing Service: ${JSON.stringify(params)}`)
-    if (params.legacy === 'true' && params.plans === 'true') throw Error(`Legacy services can't be made compliant: ${JSON.stringify(params)}`)
-  }
+  if (params.legacy === undefined) throw Error(`params.legacy not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.legacy, { lower: true })
+  const valid = ['true', 'false']
+  if (!valid.includes(slug)) throw Error(`params.legacy not valid when constructing Service: ${params.name}`)
+  if (params.legacy === 'true' && params.plans === 'true') throw Error(`Legacy services should not be considered legacy if they can be made compliant: ${params.name}`)
 }
 
 function risk (params) {
-  if (params.risk === undefined) throw Error(`params.risk not found when constructing Service: ${JSON.stringify(params)}`)
-  if (params.risk) {
-    const slug = slugify(params.risk, { lower: true })
-    const valid = ['very-high', 'high', 'medium', 'low', 'compliant', 'unknown']
-    if (!valid.includes(slug)) throw Error(`params.risk not valid when constructing Service: ${JSON.stringify(params)}`)
-    if (params.risk !== 'unknown' && params.risk !== 'compliant' && params.status === 'not-live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
-  }
+  if (params.risk === undefined) throw Error(`params.risk not found when constructing Service: ${params.name}`)
+  const slug = slugify(params.risk, { lower: true })
+  const valid = ['very-high', 'high', 'medium', 'low', 'compliant', 'unknown']
+  if (!valid.includes(slug)) throw Error(`params.risk not valid when constructing Service: ${params.name}`)
+  if (params.risk !== 'unknown' && params.risk !== 'compliant' && params.status === 'not-live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
 }
 
 function evidence (params) {
-  if (params.evidence === undefined) throw Error(`params.evidence not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.evidence === undefined) throw Error(`params.evidence not found when constructing Service: ${params.name}`)
   checkEvidence(params)
 }
 
@@ -118,23 +107,9 @@ function checkEvidence (params) {
   })
 }
 
-function checkDate (date, serviceName) {
-  const allowedExceptions = ['n/a', 'unknown']
-  if (!allowedExceptions.includes(date)) {
-    const parseAttempt = datefns.parse(date, 'MMMM yyyy', new Date())
-    const isDate = isValidDate(parseAttempt)
-    if (!isDate) throw Error(`Date not valid when constructing service: ${serviceName} - ${date}`)
-  }
-  return date
-}
-
-function isValidDate (date) {
-  return date instanceof Date && !isNaN(date)
-}
-
 function notes (params) {
   if (params.notes === undefined) params.notes = ''
-  if (typeof params.notes !== 'string') throw Error(`params.notes not valid when constructing Service: ${JSON.stringify(params)}`)
+  if (typeof params.notes !== 'string') throw Error(`params.notes not valid when constructing Service: ${params.name}`)
 }
 
 module.exports = {

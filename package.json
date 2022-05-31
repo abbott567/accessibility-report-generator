@@ -58,13 +58,13 @@
   "mocha": {
     "recursive": true,
     "timeout": "120000",
-    "exit": true,
-    "sort": true
+    "exit": true
   },
   "nyc": {
     "include": [
       "src**/*",
-      "!src/data*"
+      "!src/data*",
+      "!src/example-data*"
     ],
     "all": true,
     "reporter": [

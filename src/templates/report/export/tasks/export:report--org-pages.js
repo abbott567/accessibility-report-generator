@@ -1,33 +1,38 @@
-const nav = require('../../lib/generate-navigation-data')
-const overwriteURLs = require('../../lib/overwrite-urls')
-const saveHTML = require('../../../../utils/save-html')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const nav = require(path.resolve('src', 'templates', 'report', 'lib', 'generate-navigation-data'))
+const overwriteURLs = require(path.resolve('src', 'templates', 'report', 'lib', 'overwrite-urls'))
+const saveHTML = require(path.resolve('src', 'utils', 'save-html'))
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
+const Directorate = require(path.resolve('src', 'model', 'constructors', 'Directorate'))
+const PDU = require(path.resolve('src', 'model', 'constructors', 'PDU'))
 
 async function buildOverviewPage () {
-  const getHTML = require('../../pages/overview/build-html')
+  const getHTML = require(path.resolve('src', 'templates', 'report', 'pages', 'overview', 'build-html'))
   const html = { raw: getHTML() }
   html.local = await overwriteURLs(html.raw, 'root')
   await saveHTML(html.local, `output/reports/${todayDate}`)
   console.log('Report:'.magenta, 'HTML saved: '.cyan, `output/reports/${todayDate}/overview.html`)
 }
 
-async function buildDirectoratePage (slug) {
-  if (slug !== '/') {
-    const name = slug[0] === '/' ? slug.substring(1) : slug
-    const getHTML = require('../../pages/directorate/build-html')
-    const html = { raw: getHTML(name) }
+async function buildDirectoratePage (url) {
+  if (url !== '/') {
+    const slug = url[0] === '/' ? url.substring(1) : url
+    const getHTML = require(path.resolve('src', 'templates', 'report', 'pages', 'directorate', 'build-html'))
+    const directorate = Directorate.findBySlug(slug)
+    const html = { raw: getHTML(directorate) }
     html.local = await overwriteURLs(html.raw, 'level1')
-    await saveHTML(html.local, `output/reports/${todayDate}/${name}`)
-    console.log('Report:'.magenta, 'HTML saved: '.cyan, `output/reports/${todayDate}/${name}.html`)
+    await saveHTML(html.local, `output/reports/${todayDate}/${slug}`)
+    console.log('Report:'.magenta, 'HTML saved: '.cyan, `output/reports/${todayDate}/${slug}.html`)
   }
 }
 
-async function buildPDUPage (slug) {
-  if (slug !== '/') {
-    const sanitisedSlug = slug[0] === '/' ? slug.substring(1) : slug
-    const name = sanitisedSlug.split('/').pop()
-    const getHTML = require('../../pages/pdu/build-html')
-    const html = { raw: getHTML(name) }
+async function buildPDUPage (url) {
+  if (url !== '/') {
+    const sanitisedSlug = url[0] === '/' ? url.substring(1) : url
+    const slug = sanitisedSlug.split('/').pop()
+    const pdu = PDU.findBySlug(slug)
+    const getHTML = require(path.resolve('src', 'templates', 'report', 'pages', 'pdu', 'build-html'))
+    const html = { raw: getHTML(pdu) }
     html.local = await overwriteURLs(html.raw, 'level2')
     await saveHTML(html.local, `output/reports/${todayDate}/${sanitisedSlug}`)
     console.log('Report:'.magenta, 'HTML saved: '.cyan, `output/reports/${todayDate}/${sanitisedSlug}.html`)

@@ -1,12 +1,12 @@
+const path = require('path')
 const requireDir = require('require-dir')
 
-function loadData (param) {
-  const env = param || process.env.NODE_ENV
+function loadData (env) {
   let orgData
   if (env === 'test') {
-    orgData = requireDir('../../test/data', { recurse: true })
+    orgData = requireDir(path.resolve('test', 'dummy-data'), { recurse: true })
   } else {
-    orgData = requireDir('../data', { recurse: true })
+    orgData = requireDir(path.resolve('src', 'data'), { recurse: true })
   }
   return orgData
 }

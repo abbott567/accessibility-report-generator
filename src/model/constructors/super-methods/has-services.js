@@ -1,4 +1,5 @@
-const percent = require('../../../utils/percent')
+const path = require('path')
+const percent = require(path.resolve('src', 'utils', 'percent'))
 
 class SuperMethodHasServices {
   #services = []
@@ -22,6 +23,7 @@ class SuperMethodHasServices {
         if (nonCompliantFilter) return this.#services.filter(x => x.status === filter.status && x.risk !== 'compliant' && x.type === filter.type)
         else return this.#services.filter(x => x.status === filter.status && x.risk === filter.risk && x.type === filter.type)
       }
+      /* istanbul ignore else */
       if (filter.type && filter.plans && filter.status) return this.#services.filter(x => x.type === filter.type && x.plans === filter.plans && x.status === filter.status)
     } else if (filterLength === 2) {
       if (filter.plans && filter.status) return this.#services.filter(x => x.plans === filter.plans && x.status === filter.status)
@@ -39,6 +41,7 @@ class SuperMethodHasServices {
       if (filter.type && filter.legacy) return this.#services.filter(x => x.type === filter.type && x.legacy === filter.legacy)
       if (filter.type && filter.critical) return this.#services.filter(x => x.type === filter.type && x.critical === filter.critical)
       if (filter.type && filter.sunsetting) return this.#services.filter(x => x.type === filter.type && x.sunsetting === filter.sunsetting)
+      /* istanbul ignore else */
       if (filter.type && filter.plans) return this.#services.filter(x => x.type === filter.type && x.plans === filter.plans)
     } else {
       if (filter.type) return this.#services.filter(x => x.type === filter.type)

@@ -24,7 +24,7 @@ class Org extends SuperMethodHasDirectorates {
     this.templateData = sanitisedParams.templateData
   }
 
-  static findById (id) {
+  static findByID (id) {
     const org = Org.all.find(x => x.id === id)
     if (org === undefined) throw Error(`Couldnt find an Org with the ID: ${id}`)
     return org

@@ -30,7 +30,7 @@ class PDU extends SuperMethodHasServices {
     this.stakeholders = sanitisedParams.stakeholders
   }
 
-  static findById (id) {
+  static findByID (id) {
     const pdu = PDU.all.find(x => x.id === id)
     if (pdu === undefined) throw Error(`Couldnt find a PDU with the ID: ${id}`)
     return pdu
@@ -43,11 +43,11 @@ class PDU extends SuperMethodHasServices {
   }
 
   getOrg () {
-    return Org.findById(this.orgID)
+    return Org.findByID(this.orgID)
   }
 
   getDirectorate () {
-    return Directorate.findById(this.directorateID)
+    return Directorate.findByID(this.directorateID)
   }
 
   save () {

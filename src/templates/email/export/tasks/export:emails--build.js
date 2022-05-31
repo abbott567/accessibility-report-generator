@@ -1,6 +1,7 @@
-const getEmailHTML = require('../../lib/build-html')
-const saveHTML = require('../../../../utils/save-html')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const getEmailHTML = require(path.resolve('src', 'templates', 'email', 'lib', 'build-html'))
+const saveHTML = require(path.resolve('src', 'utils', 'save-html'))
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
 
 async function buildEmail (data) {
   const html = await getEmailHTML(data)

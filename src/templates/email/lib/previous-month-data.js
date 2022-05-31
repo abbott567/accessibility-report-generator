@@ -1,9 +1,10 @@
+const path = require('path')
 const fs = require('fs-jetpack')
 const datefns = require('date-fns')
-const todayDate = require('../../../utils/today-date')
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
 
 async function getPreviousMonth (pdu) {
-  const previousMonthsScrape = await fs.list('output/emails')
+  const previousMonthsScrape = await fs.list(path.resolve('output', 'emails'))
   if (previousMonthsScrape) {
     const previousMonths = previousMonthsScrape.filter(x => x !== '.DS_Store')
     if (previousMonths.length > 0) {
@@ -19,9 +20,9 @@ async function getPreviousMonth (pdu) {
 
 async function getPreviousMonthData (pdu) {
   const date = await getPreviousMonth(pdu)
-  const checkForPreviousMonth = await fs.exists(`output/emails/${date}/_data.json`)
+  const checkForPreviousMonth = await fs.exists(path.resolve('output', 'emails', date, '_data.json'))
   if (checkForPreviousMonth) {
-    const previousMonthData = await require(`../../../../output/emails/${date}/_data.json`)
+    const previousMonthData = await require(path.resolve('output', 'emails', date, '_data.json'))
     const previousMonthObj = previousMonthData.find(x => x.pdu.slug === pdu.slug)
     if (previousMonthObj) {
       const previousMonthPDU = previousMonthObj.thisMonth.pdu

@@ -1,12 +1,10 @@
-const locals = require('../../lib/build-locals')
-
-const PDU = require('../../../../model/constructors/PDU')
-
-const nunjucks = require('../../lib/nunjucks')
+const path = require('path')
+const buildLocals = require(path.resolve('src', 'templates', 'report', 'lib', 'build-locals'))
+const nunjucks = require(path.resolve('src', 'templates', 'report', 'lib', 'nunjucks'))
 const minify = require('html-minifier').minify
 
-function getPDUHTML (slug) {
-  const pdu = PDU.findBySlug(slug)
+function getPDUHTML (pdu) {
+  const locals = buildLocals()
   locals.pdu = pdu
   const template = nunjucks.render('pages/pdu/template.njk', locals)
   const pduHTML = minify(template, { collapseWhitespace: true })

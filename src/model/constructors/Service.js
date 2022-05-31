@@ -52,7 +52,7 @@ class Service {
     this.#generateStats()
   }
 
-  static findById (id) {
+  static findByID (id) {
     const service = Service.all.find(x => x.id === id)
     if (service === undefined) throw Error(`Couldnt find a Service with the ID: ${id}`)
     return service
@@ -94,16 +94,21 @@ class Service {
     return services
   }
 
+  static getLegacy () {
+    const services = Service.all.filter(x => x.legacy === 'true')
+    return services
+  }
+
   getOrg () {
-    return Org.findById(this.orgID)
+    return Org.findByID(this.orgID)
   }
 
   getDirectorate () {
-    return Directorate.findById(this.directorateID)
+    return Directorate.findByID(this.directorateID)
   }
 
   getPDU () {
-    return PDU.findById(this.PDUID)
+    return PDU.findByID(this.PDUID)
   }
 
   getProgress () {
@@ -116,6 +121,10 @@ class Service {
 
   isCritical () {
     return this.critical === 'true'
+  }
+
+  isLegacy () {
+    return this.legacy === 'true'
   }
 
   save () {
@@ -139,6 +148,7 @@ class Service {
     if (this.evidence.voice_controller.status === 'passed') this.stats.progress += 20
     if (this.evidence.voice_controller.status === 'failed') this.stats.progress += 10
     if (this.evidence.statement.status === 'done') this.stats.progress += 20
+    if (this.evidence.statement.status === 'passed') this.stats.progress += 20
     if (this.evidence.statement.status === 'failed') this.stats.progress += 10
     if (this.status === 'live') {
       if (this.stats.progress === 100) this.risk = 'compliant'

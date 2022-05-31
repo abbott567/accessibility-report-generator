@@ -1,4 +1,5 @@
-const PDU = require('../../../../model/constructors/PDU')
+const path = require('path')
+const PDU = require(path.resolve('src', 'model', 'constructors', 'PDU'))
 
 function overrideServices (services) {
   services.forEach(service => {

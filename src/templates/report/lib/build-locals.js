@@ -1,16 +1,19 @@
 const datefns = require('date-fns')
+const path = require('path')
+const buildDataModel = require(path.resolve('src', 'model', 'build-data-model'))
 
-const Org = require('../../../model/constructors/Org')
-const org = Org.all[0]
-
-const locals = {
-  Org,
-  Directorate: require('../../../model/constructors/Directorate'),
-  PDU: require('../../../model/constructors/PDU'),
-  Service: require('../../../model/constructors/Service'),
-  date: datefns.format(new Date(), 'd MMMM yyyy'),
-  nav: require('../lib/generate-navigation-data'),
-  org
+function buildReportLocals () {
+  const { Org, Directorate, PDU, Service } = buildDataModel('test')
+  const locals = {
+    Org,
+    Directorate,
+    PDU,
+    Service,
+    date: datefns.format(new Date(), 'd MMMM yyyy'),
+    nav: require(path.resolve('src', 'templates', 'report', 'lib', 'generate-navigation-data')),
+    org: Org.all[0]
+  }
+  return locals
 }
 
-module.exports = locals
+module.exports = buildReportLocals

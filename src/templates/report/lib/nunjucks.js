@@ -1,3 +1,4 @@
+const path = require('path')
 const Nunjucks = require('nunjucks')
 const nunjucks = new Nunjucks.Environment(
   new Nunjucks.FileSystemLoader([
@@ -11,12 +12,13 @@ nunjucks.addFilter('isNaN', num => {
   return false
 })
 
-nunjucks.addFilter('generateStatsSectionData', require('../components/stats-section/filter'))
+nunjucks.addFilter('generateStatsSectionData', require(path.resolve('src', 'templates', 'report', 'components', 'stats-section', 'filter')))
 nunjucks.addFilter('prettify', string => {
   if (string === 'compliant') return 'compliant'
   if (string === 'very-high') return 'very high risk'
   if (string === 'high') return 'high risk'
   if (string === 'medium') return 'medium risk'
+  if (string === 'low') return 'low risk'
   if (string === 'unknown') return 'unknown risk'
   if (string === 'not-live') return 'not live'
   if (string === 'not-done') return 'not done'

@@ -32,14 +32,14 @@ class Directorate extends SuperMethodHasPDUs {
     return directorate
   }
 
-  static findById (id) {
+  static findByID (id) {
     const directorate = Directorate.all.find(x => x.id === id)
     if (directorate === undefined) throw Error(`Couldnt find a Directorate with the ID: ${id}`)
     return directorate
   }
 
   getOrg () {
-    return Org.findById(this.orgID)
+    return Org.findByID(this.orgID)
   }
 
   save () {

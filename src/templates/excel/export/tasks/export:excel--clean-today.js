@@ -1,12 +1,11 @@
-const fs = require('fs-jetpack')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
+const cleanFolder = require(path.resolve('src', 'utils', 'clean-folder'))
 
 async function cleanTodayFolder () {
-  const todayFolder = `output/excel/${todayDate}`
-  const buildExists = await fs.exists(todayFolder)
-  if (buildExists) await fs.remove(todayFolder)
-  await fs.dir(todayFolder)
-  console.log('Excel:'.yellow, 'Cleaned: '.blue, `output/excel/${todayDate}`)
+  const folder = `output/excel/${todayDate}`
+  const message = 'Excel: '.yellow + 'Cleaned: '.blue + folder
+  await cleanFolder(folder, message)
 }
 
 module.exports = cleanTodayFolder

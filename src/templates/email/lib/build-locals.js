@@ -1,15 +1,20 @@
 const datefns = require('date-fns')
+const path = require('path')
 
-const Org = require('../../../model/constructors/Org')
-const org = Org.all[0]
-
-const locals = {
-  Org,
-  Directorate: require('../../../model/constructors/Directorate'),
-  PDU: require('../../../model/constructors/PDU'),
-  Service: require('../../../model/constructors/Service'),
-  date: datefns.format(new Date(), 'd MMMM yyyy'),
-  org
+function buildEmailLocals () {
+  const Org = require(path.resolve('src', 'model', 'constructors', 'Org'))
+  const Directorate = require(path.resolve('src', 'model', 'constructors', 'Directorate'))
+  const PDU = require(path.resolve('src', 'model', 'constructors', 'PDU'))
+  const Service = require(path.resolve('src', 'model', 'constructors', 'Service'))
+  const locals = {
+    Org,
+    Directorate,
+    PDU,
+    Service,
+    date: datefns.format(new Date(), 'd MMMM yyyy'),
+    org: Org.all[0]
+  }
+  return locals
 }
 
-module.exports = locals
+module.exports = buildEmailLocals

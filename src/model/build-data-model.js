@@ -1,12 +1,17 @@
+const path = require('path')
 const Org = require('./constructors/Org')
 const Directorate = require('./constructors/Directorate')
 const PDU = require('./constructors/PDU')
 const Service = require('./constructors/Service')
 
-const dataLoader = require('../utils/data-loader.js')
+const dataLoader = require(path.resolve('src', 'utils', 'data-loader'))
 
-function buildDataModel (params) {
-  const orgData = dataLoader(params)
+function buildDataModel (env) {
+  if (Org.all && Directorate.all && PDU.all && Service.all) {
+    if (Org.all.length > 0 && Directorate.all.length > 0 && PDU.all.length > 0 && Service.all.length > 0) return { Org, Directorate, PDU, Service }
+  }
+  if (env !== 'test') env = 'production'
+  const orgData = dataLoader(env)
 
   /* istanbul ignore if */
   if (orgData.info === undefined) throw Error('Could not load info.js for Org')

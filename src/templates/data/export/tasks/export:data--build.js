@@ -1,14 +1,14 @@
-// const getEmailHTML = require('../../lib/build-html')
-const saveJSON = require('../../../../utils/save-json')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const saveJSON = require(path.resolve('src', 'utils', 'save-json'))
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
 
-const dataLoader = require('../../../../../src/utils/data-loader')
+const dataLoader = require(path.resolve('src', 'utils', 'data-loader'))
 const data = dataLoader()
 
 const fs = require('fs-jetpack')
 const datefns = require('date-fns')
 async function getPreviousMonth (todayDate) {
-  const previousMonthsScrape = await fs.list('output/data')
+  const previousMonthsScrape = await fs.list(path.resolve('output', 'data'))
   if (previousMonthsScrape) {
     let previousMonths = previousMonthsScrape.filter(x => x !== '.DS_Store')
     if (previousMonths.length > 0) {
@@ -22,13 +22,13 @@ async function getPreviousMonth (todayDate) {
   }
   return undefined
 }
-const getDiffHTML = require('../../lib/build-html')
-const saveHTML = require('../../../../utils/save-html')
+const getDiffHTML = require(path.resolve('src', 'templates', 'data', 'lib', 'build-html'))
+const saveHTML = require(path.resolve('src', 'utils', 'save-html'))
 async function buildDiff (todayData) {
   const dir = `output/data/${todayDate}`
   const prevMonth = await getPreviousMonth(todayDate)
   if (prevMonth) {
-    const prevData = require(`../../../../../output/data/${prevMonth}/${prevMonth}-data.json`)
+    const prevData = require(path.resolve('output', 'data', prevMonth, `${prevMonth}-data.json`))
     const html = await getDiffHTML(prevData, todayData, datefns.format(datefns.parseISO(prevMonth), 'd MMMM yyyy'))
     await saveHTML(html, dir, `${todayDate}-diff`)
     console.log('Data:'.red, 'Diff saved'.cyan)

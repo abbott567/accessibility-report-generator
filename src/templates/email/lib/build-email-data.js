@@ -1,9 +1,8 @@
-const buildDataModel = require('../../../model/build-data-model')
-const { Org, PDU } = buildDataModel()
-const getPreviousMonth = require('../lib/previous-month-data')
+const path = require('path')
+const getPreviousMonth = require(path.resolve('src', 'templates', 'email', 'lib', 'previous-month-data'))
 const cloneDeep = require('clone-deep')
 
-async function buildEmailData () {
+async function buildEmailData (Org, PDU) {
   const org = Org.all[0]
   const emails = []
   for (const x in PDU.all) {

@@ -1,12 +1,12 @@
 require('colors')
 const fs = require('fs-jetpack')
-
+const path = require('path')
 function generateDirectoratesWorksheet (workbook, Directorate, tabName) {
   let directorates = Directorate.all
-  const overrideExists = fs.exists('./src/templates/excel/export/overrides/directorates.js')
+  const overrideExists = fs.exists(path.resolve('src', 'templates', 'excel', 'export', 'overrides', 'directorates.js'))
   if (overrideExists) {
     console.log('Excel:'.yellow, 'Overriding directorate data'.yellow)
-    const overrideDirectorates = require('../overrides/directorates')
+    const overrideDirectorates = require(path.resolve('src', 'templates', 'excel', 'export', 'overrides', 'directorates'))
     directorates = overrideDirectorates(directorates)
   }
   const wsOverview = workbook.addWorksheet(tabName)

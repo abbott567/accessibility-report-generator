@@ -1,12 +1,13 @@
 require('colors')
 const fs = require('fs-jetpack')
+const path = require('path')
 
 function generateServicesWorksheet (workbook, Service, tabName) {
   let services = Service.all
   const overrideExists = fs.exists('./src/templates/excel/export/overrides/services.js')
   if (overrideExists) {
     console.log('Excel:'.yellow, 'Overriding services data'.yellow)
-    const overrideServices = require('../overrides/services')
+    const overrideServices = require(path.resolve('src', 'templates', 'excel', 'export', 'overrides', 'services'))
     services = overrideServices(services)
   }
   const wsOverview = workbook.addWorksheet(tabName)

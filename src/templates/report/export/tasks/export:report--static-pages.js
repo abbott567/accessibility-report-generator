@@ -1,6 +1,7 @@
-const saveHTML = require('../../../../utils/save-html')
-const overwriteURLs = require('../../lib/overwrite-urls')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const saveHTML = require(path.resolve('src', 'utils', 'save-html'))
+const overwriteURLs = require(path.resolve('src', 'templates', 'report', 'lib', 'overwrite-urls'))
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
 
 async function buildStaticPage (name) {
   const getHTML = require(`../../pages/${name}/build-html`)

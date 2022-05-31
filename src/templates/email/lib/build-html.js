@@ -1,4 +1,5 @@
-const locals = require('./build-locals')
+const buildLocals = require('./build-locals')
+const locals = buildLocals()
 
 const nunjucks = require('./nunjucks')
 const minify = require('html-minifier').minify

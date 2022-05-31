@@ -1,10 +1,11 @@
-const buildEmailData = require('../../lib/build-email-data')
-const buildEmail = require('./export:emails--build')
-const saveJSON = require('../../../../utils/save-json')
-const todayDate = require('../../../../utils/today-date')
+const path = require('path')
+const buildEmailData = require(path.resolve('src', 'templates', 'email', 'lib', 'build-email-data'))
+const buildEmail = require(path.resolve('src', 'templates', 'email', 'export', 'tasks', 'export:emails--build'))
+const saveJSON = require(path.resolve('src', 'utils', 'save-json'))
+const todayDate = require(path.resolve('src', 'utils', 'today-date'))
 
-async function buildAllEmails () {
-  const emails = await buildEmailData()
+async function buildAllEmails (Org, PDU) {
+  const emails = await buildEmailData(Org, PDU)
   for (const i in emails) {
     const email = emails[i]
     await buildEmail(email)

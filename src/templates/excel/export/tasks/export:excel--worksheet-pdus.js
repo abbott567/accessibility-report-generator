@@ -1,12 +1,13 @@
 require('colors')
 const fs = require('fs-jetpack')
+const path = require('path')
 
 function generatePDUsWorksheet (workbook, PDU, tabName) {
   let pdus = PDU.all
   const overrideExists = fs.exists('./src/templates/excel/export/overrides/pdus.js')
   if (overrideExists) {
     console.log('Excel:'.yellow, 'Overriding PDU data'.yellow)
-    const overridePDUs = require('../overrides/pdus')
+    const overridePDUs = require(path.resolve('src', 'templates', 'excel', 'export', 'overrides', 'pdus'))
     pdus = overridePDUs(pdus)
   }
   const wsOverview = workbook.addWorksheet(tabName)

@@ -4,11 +4,12 @@
 const { expect } = require('chai')
 const cheerio = require('cheerio')
 const datefns = require('date-fns')
+const path = require('path')
 
 describe('View: Overview', () => {
   it('should render: pages/overview', () => {
     const date = datefns.format(new Date(), 'd MMMM yyyy')
-    const getHTML = require('../../../src/templates/report/pages/overview/build-html')
+    const getHTML = require(path.resolve('src', 'templates', 'report', 'pages', 'overview', 'build-html'))
     const html = getHTML()
     const $ = cheerio.load(html)
     const title = $('title').text()
