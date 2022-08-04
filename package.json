@@ -15,7 +15,7 @@
     "test": "NODE_ENV=test mocha"
   },
   "engines": {
-    "node": ">=14.0.0 <15.0.0"
+    "node": "16.x"
   },
   "author": "Craig Abbott (@Abbott567)",
   "license": "ISC",
@@ -27,16 +27,16 @@
     "express": "^4.17.1",
     "findit2": "^2.2.3",
     "fs-jetpack": "^4.2.0",
-    "govuk-frontend": "^3.14.0",
+    "govuk-frontend": "^4.x",
     "html-minifier": "^4.0.0",
     "js-better-fs": "^1.0.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.x",
     "nunjucks": "^3.2.3",
     "package-json-path": "^1.0.9",
     "percent-value": "^1.0.9",
     "require-dir": "^1.2.0",
     "serve-favicon": "^2.5.0",
-    "sinon": "^12.0.1",
+    "sinon": "^14.x",
     "sinon-chai": "^3.7.0",
     "slugify": "^1.6.0"
   },
@@ -48,12 +48,12 @@
     "colors": "^1.4.0",
     "deep-diff": "^1.0.2",
     "deep-object-diff": "^1.1.7",
-    "eslint": "^7.32.0",
-    "json-diff": "^0.7.4",
+    "eslint": "^7.x",
+    "json-diff": "^0.x",
     "madge": "^5.0.1",
-    "mocha": "^9.1.2",
+    "mocha": "^10.x",
     "nyc": "^15.1.0",
-    "standard": "^16.0.4"
+    "standard": "^17.0.0"
   },
   "mocha": {
     "recursive": true,
