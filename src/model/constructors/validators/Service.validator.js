@@ -91,6 +91,7 @@ function risk (params) {
     const valid = ['very-high', 'high', 'medium', 'low', 'compliant', 'unknown']
     if (!valid.includes(slug)) throw Error(`params.risk not valid when constructing Service: ${JSON.stringify(params)}`)
     if (params.risk !== 'unknown' && params.risk !== 'compliant' && params.status === 'not-live') console.warn('Not live but has a risk status:'.yellow + ` ${params.name}`)
+    if (params.risk === 'unknown' && params.status === 'live') console.warn('Live with unknown risk:'.yellow + ` ${params.name}`)
   }
 }
 
@@ -100,14 +101,14 @@ function evidence (params) {
 }
 
 function checkEvidence (params) {
-  const evidence = ['wcag', 'screen_reader', 'screen_magnifier', 'voice_controller', 'statement']
+  const evidence = ['wcag', 'screen_reader', 'screen_magnifier', 'voice_controller']
   evidence.forEach(ev => {
     const set = params.evidence[ev]
     // Status
     const status = set.status
     if (status === undefined) throw Error(`params.evidence.${ev}.status not found when constructing Service: ${params.name}`)
     const slug = slugify(status, { lower: true })
-    const valid = ['done', 'not-done', 'passed', 'failed', 'basic']
+    const valid = ['not-done', 'passed', 'failed', 'basic']
     if (!valid.includes(slug)) throw Error(`params.evidence.${ev}.status (${slug}) not valid when constructing Service: ${params.name}`)
     // Date
     const date = set.date
@@ -116,6 +117,19 @@ function checkEvidence (params) {
     set.status = slug
     set.date = validDate
   })
+
+  const set = params.evidence.statement
+  const status = set.status
+  if (status === undefined) throw Error(`params.evidence.statement.status not found when constructing Service: ${params.name}`)
+  const slug = slugify(status, { lower: true })
+  const valid = ['not-done', 'done', 'failed']
+  if (!valid.includes(slug)) throw Error(`params.evidence.statement.status (${slug}) not valid when constructing Service: ${params.name}`)
+  // Date
+  const date = set.date
+  if (date === undefined) throw Error(`params.evidence.statement.date not found when constructing Service: ${params.name}`)
+  const validDate = checkDate(date, params.name)
+  set.status = slug
+  set.date = validDate
 }
 
 function checkDate (date, serviceName) {
