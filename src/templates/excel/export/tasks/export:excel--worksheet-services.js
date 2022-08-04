@@ -33,6 +33,7 @@ function generateServicesWorksheet (workbook, Service, tabName) {
     { header: 'Screen magnifier tests', key: 'service_screen_magnifier_tests', width: 20 },
     { header: 'Accessibility Statement', key: 'service_accessibility_statement', width: 20 },
     { header: 'Accessibility Statement date', key: 'service_accessibility_statement_date', width: 20 },
+    { header: 'In Scope', key: 'service_in_scope', width: 20 },
     { header: 'Notes', key: 'service_notes', width: 20 }
   ]
   services.forEach(service => {
@@ -59,7 +60,8 @@ function generateServicesWorksheet (workbook, Service, tabName) {
       service_screen_magnifier_tests: service.evidence.screen_magnifier.status,
       service_accessibility_statement: service.evidence.statement.status,
       service_accessibility_statement_date: service.evidence.statement.date,
-      service_notes: service.notes.status
+      service_in_scope: (service.plans === 'true' && service.status === 'live') ? 'true' : 'false',
+      service_notes: service.notes
     })
   })
   wsOverview.getRow(1).font = { size: 12, bold: true }
