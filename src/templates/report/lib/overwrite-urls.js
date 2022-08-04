@@ -4,10 +4,13 @@ function overwriteURLs (html, page) {
   const $ = cheerio.load(html)
   $('a').each(function () {
     const link = $(this).attr('href')
+    const isPageJumpLink = link.charAt(0) === '#'
+    const isJumpLink = link.match(/#/)
     const isNotJumpLink = !link.match(/#/)
     const isNotInternetLink = !link.match(/http/)
     const isNotEmailLink = !link.match(/mailto/)
     const isRootURL = link === '/'
+
     if (isRootURL) {
       let newLink = ''
       if (page === 'root') {
@@ -36,6 +39,31 @@ function overwriteURLs (html, page) {
         const linkWithoutFirstSlash = link.replace(/\//, '')
         newLink = '../../' + linkWithoutFirstSlash
         return $(this).attr('href', newLink + '/index.html')
+      }
+    }
+
+    if (isJumpLink && !isPageJumpLink) {
+      if (page === 'root') {
+        let newLink = ''
+        const filePath = link.split('#')[0]
+        const pageLink = '#' + link.split('#').pop()
+        const linkWithoutFirstSlash = filePath.replace(/\//, '')
+        newLink = '../' + linkWithoutFirstSlash
+        return $(this).attr('href', newLink + '/index.html' + pageLink)
+      } else if (page === 'level1') {
+        let newLink = ''
+        const filePath = link.split('#')[0]
+        const pageLink = '#' + link.split('#').pop()
+        const linkWithoutFirstSlash = filePath.replace(/\//, '')
+        newLink = '../' + linkWithoutFirstSlash
+        return $(this).attr('href', newLink + '/index.html' + pageLink)
+      } else if (page === 'level2') {
+        let newLink = ''
+        const filePath = link.split('#')[0]
+        const pageLink = '#' + link.split('#').pop()
+        const linkWithoutFirstSlash = filePath.replace(/\//, '')
+        newLink = '../../' + linkWithoutFirstSlash
+        return $(this).attr('href', newLink + '/index.html' + pageLink)
       }
     }
   })
