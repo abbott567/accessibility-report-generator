@@ -51,6 +51,26 @@
   </ul>
 
   <h2 class="govuk-heading-m">
+    Responsibilities
+  </h2>
+  <ul class="govuk-list govuk-list--bullet">
+    {%- for parent in nav.responsibilities -%}
+      <li>
+        <a class="govuk-link" href="{{parent.link}}">
+          {{parent.name}}
+        </a>
+        {%- if parent.children.length > 0 -%}
+          <ul class="govuk-list govuk-list--bullet">
+            {%- for child in parent.children -%}
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <h2 class="govuk-heading-m">
     Support links
   </h2>
   <ul class="govuk-list govuk-list--bullet">
