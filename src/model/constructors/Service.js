@@ -18,6 +18,7 @@ class Service {
   PDUID
   status
   type
+  thirdParty
   risk
   critical
   sunsetting
@@ -40,6 +41,7 @@ class Service {
     this.sunsetDate = sanitisedParams.sunsetDate
     this.legacy = sanitisedParams.legacy
     this.plans = sanitisedParams.plans
+    this.thirdParty = sanitisedParams.thirdParty
     this.name = sanitisedParams.name
     this.slug = sanitisedParams.slug
     this.orgID = sanitisedParams.orgID
@@ -86,6 +88,21 @@ class Service {
 
   static getCritical () {
     const services = Service.all.filter(x => x.critical === 'true')
+    return services
+  }
+
+  static getThirdParty () {
+    const services = Service.all.filter(x => x.thirdParty === 'true')
+    return services
+  }
+
+  static getInHouse () {
+    const services = Service.all.filter(x => x.thirdParty === 'false')
+    return services
+  }
+
+  static getUnknownResponsibility () {
+    const services = Service.all.filter(x => x.thirdParty === 'unknown')
     return services
   }
 

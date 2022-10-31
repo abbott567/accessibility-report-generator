@@ -1,0 +1,44 @@
+{%- extends 'report-template.njk' -%}
+
+{%- set page_title = 'Third-party services' -%}
+{%- set current_url = '/filters/third-party-services' %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Third-party services
+</h1>
+
+<p class="govuk-body">
+  There are {{Service.getThirdParty().length}} services which are built by, 
+  maintained by, or built in collaboration with third-parties.
+</p>
+
+{%- for directorate in Directorate.all -%}
+  <div class="app-inset-text govuk-!-margin-top-6">
+    <h2 class="govuk-heading-m">{{directorate.name}}</h2>
+    {%- for pdu in directorate.getPDUs() -%}
+      <h3 class="govuk-heading-s">{{pdu.name}}</h3>
+      {%- set services = pdu.getServices({ thirdParty: 'true' }) -%}
+      {%- if services.length === 0 -%}
+        <p class="govuk-body">
+          No third-party services.
+        </p>
+      {%- else -%}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for service in services %}
+            <li class="govuk-!-margin-bottom-5">
+              <a class="govuk-link" href="/{{directorate.slug}}/{{pdu.slug}}#{{service.slug}}">{{service.name}}</a><br />
+              <span class="govuk-visually-hidden">
+                Labels:
+              </span>
+              {{- labels(service, {add_classes: 'app-tag'}) -}}
+            </li>
+          {% endfor %}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+
+{%- endblock -%}

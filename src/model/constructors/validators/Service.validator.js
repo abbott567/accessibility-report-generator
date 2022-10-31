@@ -9,6 +9,7 @@ function params (params) {
   PDU(params)
   status(params)
   type(params)
+  thirdParty(params)
   critical(params)
   sunsetting(params)
   plans(params)
@@ -81,6 +82,15 @@ function legacy (params) {
     const valid = ['true', 'false']
     if (!valid.includes(slug)) throw Error(`params.legacy not valid when constructing Service: ${JSON.stringify(params)}`)
     if (params.legacy === 'true' && params.plans === 'true') throw Error(`Legacy services can't be made compliant: ${JSON.stringify(params)}`)
+  }
+}
+
+function thirdParty (params) {
+  if (params.thirdParty === undefined) throw Error(`params.thirdParty not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.thirdParty) {
+    const slug = slugify(params.thirdParty, { lower: true })
+    const valid = ['true', 'false', 'unknown']
+    if (!valid.includes(slug)) throw Error(`params.thirdParty not valid when constructing Service: ${JSON.stringify(params)}`)
   }
 }
 
@@ -157,6 +167,7 @@ module.exports = {
   id: { org, directorate, PDU },
   status,
   type,
+  thirdParty,
   critical,
   sunsetting,
   plans,

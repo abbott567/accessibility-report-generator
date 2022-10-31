@@ -22,6 +22,15 @@
         <h4 class="govuk-visually-hidden">
           Notes for {{service.name}}
         </h4>
+        <p class="govuk-!-font-size-19">
+          {%- if service.thirdParty === 'true' -%}
+            This service is maintained by a third party.
+          {%- elif service.thirdParty === 'false' -%}
+            This service is maintained by {{org.name}}.
+          {%- else -%}
+            It is not known who maintains this service.
+          {%- endif -%}
+        </p>
         <p>
           {{- service.notes -}}
         </p>

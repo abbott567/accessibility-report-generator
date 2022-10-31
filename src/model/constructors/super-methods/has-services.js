@@ -47,6 +47,7 @@ class SuperMethodHasServices {
       if (filter.sunsetting) return this.#services.filter(x => x.sunsetting === filter.sunsetting)
       if (filter.plans) return this.#services.filter(x => x.plans === filter.plans)
       if (filter.legacy) return this.#services.filter(x => x.legacy === filter.legacy)
+      if (filter.thirdParty) return this.#services.filter(x => x.thirdParty === filter.thirdParty)
       if (filter.risk) {
         const nonCompliantFilter = (/!compliant/).test(filter.risk)
         if (nonCompliantFilter) return this.#services.filter(x => x.risk !== 'compliant')

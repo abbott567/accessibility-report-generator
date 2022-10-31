@@ -4,7 +4,8 @@ function generateNavigationData () {
   const nav = {
     main: [],
     filters: [],
-    support_links: []
+    support_links: [],
+    responsibilities: []
   }
 
   // Overview
@@ -86,6 +87,20 @@ function generateNavigationData () {
   nav.filters.push({
     name: 'Legacy services',
     link: '/filters/legacy-services'
+  })
+
+  // Responsibilities
+  nav.responsibilities.push({
+    name: 'In-house services',
+    link: '/responsibility/in-house-services'
+  })
+  nav.responsibilities.push({
+    name: 'Third-party services',
+    link: '/responsibility/third-party-services'
+  })
+  nav.responsibilities.push({
+    name: 'Unknown responsibility services',
+    link: '/responsibility/unknown-responsibility-services'
   })
 
   // Support links

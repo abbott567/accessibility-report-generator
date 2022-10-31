@@ -5,6 +5,7 @@ module.exports = {
   type: 'staff',
   sunsetting: 'false',
   plans: 'true',
+  thirdParty: 'false',
   critical: 'false',
   risk: 'unknown',
   legacy: 'false',

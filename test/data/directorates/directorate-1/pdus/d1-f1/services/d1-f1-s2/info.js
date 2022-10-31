@@ -4,6 +4,7 @@ module.exports = {
   status: 'live',
   type: 'staff',
   sunsetting: 'false',
+  thirdParty: 'false',
   plans: 'true',
   critical: 'false',
   risk: 'unknown',

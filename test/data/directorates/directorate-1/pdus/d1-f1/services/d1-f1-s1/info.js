@@ -3,6 +3,7 @@ module.exports = {
   alias: 'D1F1S1',
   status: 'live',
   type: 'citizen',
+  thirdParty: 'false',
   critical: 'false',
   risk: 'unknown',
   sunsetting: 'false',
