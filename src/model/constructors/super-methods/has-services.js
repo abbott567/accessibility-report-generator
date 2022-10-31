@@ -83,6 +83,9 @@ class SuperMethodHasServices {
     this.stats.services.all.no_plans = this.getNumberOfServices({ plans: 'false' })
     this.stats.services.all.live_no_plans = this.getNumberOfServices({ plans: 'false', status: 'live' })
     this.stats.services.all.legacy = this.getNumberOfServices({ legacy: 'true' })
+    this.stats.services.all.in_house = this.getNumberOfServices({ thirdParty: 'false' })
+    this.stats.services.all.third_party = this.getNumberOfServices({ thirdParty: 'true' })
+    this.stats.services.all.unknown_responsibility = this.getNumberOfServices({ thirdParty: 'unknown' })
 
     this.stats.services.citizen.total = this.getNumberOfServices({ type: 'citizen' })
     this.stats.services.citizen.live = this.getNumberOfServices({ type: 'citizen', status: 'live' })
