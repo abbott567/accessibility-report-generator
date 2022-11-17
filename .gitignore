@@ -4,6 +4,7 @@ node_modules
 !app/node_modules
 .nyc_output
 coverage
+src/data-archived
 src/data
 src/templates/excel/export/overrides/org.js
 src/templates/excel/export/overrides/directorates.js

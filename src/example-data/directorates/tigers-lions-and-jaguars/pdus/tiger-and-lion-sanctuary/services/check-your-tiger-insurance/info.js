@@ -6,6 +6,7 @@ module.exports = {
   risk: 'unknown',
   critical: 'false',
   sunsetting: 'false',
+  thirdParty: 'true',
   plans: 'true',
   legacy: 'false',
   evidence: {

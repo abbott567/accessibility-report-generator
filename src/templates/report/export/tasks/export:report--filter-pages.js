@@ -12,6 +12,8 @@ async function buildFilterPage (filter) {
 
 async function buildFilterPages (slug) {
   buildFilterPage('compliant-services')
+  buildFilterPage('live-services')
+  buildFilterPage('not-live-services')
   buildFilterPage('very-high-risk-services')
   buildFilterPage('high-risk-services')
   buildFilterPage('medium-risk-services')

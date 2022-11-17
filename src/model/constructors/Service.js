@@ -66,6 +66,12 @@ class Service {
     return service
   }
 
+  static filterByStatus (status) {
+    const service = Service.all.filter(x => x.status === status)
+    if (service === undefined) throw Error(`Couldnt find a Service with the status: ${status}`)
+    return service
+  }
+
   static filterByRisk (risk) {
     const services = Service.all.filter(x => x.risk === risk)
     return services

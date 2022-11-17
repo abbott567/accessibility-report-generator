@@ -41,6 +41,14 @@ function generateNavigationData () {
 
   // Filters
   nav.filters.push({
+    name: 'Live services',
+    link: '/filters/live-services'
+  })
+  nav.filters.push({
+    name: 'Not-live services',
+    link: '/filters/not-live-services'
+  })
+  nav.filters.push({
     name: 'Compliant services',
     link: '/filters/compliant-services'
   })

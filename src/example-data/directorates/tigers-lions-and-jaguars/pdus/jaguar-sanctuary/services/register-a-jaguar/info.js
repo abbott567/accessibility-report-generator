@@ -7,6 +7,7 @@ module.exports = {
   risk: 'medium',
   critical: 'false',
   plans: 'true',
+  thirdParty: 'false',
   legacy: 'false',
   evidence: {
     wcag: {
