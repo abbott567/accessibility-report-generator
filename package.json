@@ -52,6 +52,7 @@
     "json-diff": "^0.x",
     "madge": "^5.0.1",
     "mocha": "^10.x",
+    "mocha-suppress-logs": "^0.3.1",
     "nyc": "^15.1.0",
     "standard": "^17.0.0"
   },
@@ -59,7 +60,8 @@
     "recursive": true,
     "timeout": "120000",
     "exit": true,
-    "sort": true
+    "sort": true,
+    "require": "mocha-suppress-logs"
   },
   "nyc": {
     "include": [
