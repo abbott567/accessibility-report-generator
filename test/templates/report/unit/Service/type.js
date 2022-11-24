@@ -21,6 +21,12 @@ describe('Unt: Service -> Type', () => {
     const expectedResult = 'staff'
     expect(service.type).to.equal(expectedResult)
   })
+  it('should throw an Error if type is invalid', () => {
+    const params = cloneDeep(testData)
+    params.type = 'potato'
+    const expectedErrorMessage = `params.type not valid when constructing Service: ${JSON.stringify(params)}`
+    expect(() => new Service(params)).to.throw(expectedErrorMessage)
+  })
   it('should throw an Error if no type provided', () => {
     const params = cloneDeep(testData)
     params.type = undefined

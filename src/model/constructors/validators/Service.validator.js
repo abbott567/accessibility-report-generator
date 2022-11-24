@@ -45,6 +45,11 @@ function status (params) {
 
 function type (params) {
   if (params.type === undefined) throw Error(`params.type not found when constructing Service: ${JSON.stringify(params)}`)
+  if (params.type) {
+    const slug = slugify(params.type, { lower: true })
+    const valid = ['citizen', 'staff']
+    if (!valid.includes(slug)) throw Error(`params.type not valid when constructing Service: ${JSON.stringify(params)}`)
+  }
 }
 
 function critical (params) {
